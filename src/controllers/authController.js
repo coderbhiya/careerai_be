@@ -1,4 +1,3 @@
-// controllers/authController.js
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const emailService = require("../services/emailService");
@@ -161,10 +160,10 @@ module.exports = {
       }
 
       //   Check if profile is complete
-      const profile = await UserProfile.findOne({ where: { userId: user.id } });
-      if (!profile) {
-        return res.status(400).json({ success: false, message: "Profile not completed" });
-      }
+      // const profile = await UserProfile.findOne({ where: { userId: user.id } });
+      // if (!profile) {
+      //   return res.status(400).json({ success: false, message: "Profile not completed" });
+      // }
 
       // Generate JWT
       const token = jwt.sign({ id: user.id, email: user.email, role: user.role, isVerified: user.isVerified }, JWT_SECRET, { expiresIn: "7d" });
@@ -232,8 +231,33 @@ module.exports = {
     }
   },
 
+  /**
+   * @swagger
+   * /auth/verify-token:
+   *   post:
+   *     summary: Verify Firebase ID token
+   *     tags: [Auth]
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             properties:
+   *               idToken:
+   *                 type: string
+   *     responses:
+   *       200:
+   *         description: Token verified successfully
+   *       401:
+   *         description: Invalid token
+   *       500:
+   *         description: Server error
+   */
+
   verifyToken: async (req, res, next) => {
     try {
+      const { idToken } = req.body;
       const decoded = await admin.auth().verifyIdToken(idToken);
       console.log("User ID:", decoded.uid);
 

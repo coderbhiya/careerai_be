@@ -19,7 +19,6 @@ db.UserProfile = require("./UserProfile")(sequelize, DataTypes);
 db.Experience = require("./Experience")(sequelize, DataTypes);
 db.Skill = require("./Skill")(sequelize, DataTypes);
 db.UserSkill = require("./UserSkill")(sequelize, DataTypes);
-db.ChatSession = require("./ChatSession")(sequelize, DataTypes);
 db.ChatMessage = require("./ChatMessage")(sequelize, DataTypes);
 db.Job = require("./Job")(sequelize, DataTypes);
 db.Application = require("./Application")(sequelize, DataTypes);
@@ -44,14 +43,6 @@ db.Experience.belongsTo(db.User, { foreignKey: "userId" });
 db.User.belongsToMany(db.Skill, { through: db.UserSkill, foreignKey: "userId" });
 db.Skill.belongsToMany(db.User, { through: db.UserSkill, foreignKey: "skillId" });
 
-// User ↔ ChatSession (1:M)
-db.User.hasMany(db.ChatSession, { foreignKey: "userId" });
-db.ChatSession.belongsTo(db.User, { foreignKey: "userId" });
-
-// ChatSession ↔ ChatMessage (1:M)
-db.ChatSession.hasMany(db.ChatMessage, { foreignKey: "sessionId" });
-db.ChatMessage.belongsTo(db.ChatSession, { foreignKey: "sessionId" });
-
 // User ↔ Application (1:M)
 db.User.hasMany(db.Application, { foreignKey: "userId" });
 db.Application.belongsTo(db.User, { foreignKey: "userId" });
@@ -75,6 +66,10 @@ db.Certification.belongsTo(db.User, { foreignKey: "userId" });
 // User ↔ Notification (1:M)
 db.User.hasMany(db.Notification, { foreignKey: "userId" });
 db.Notification.belongsTo(db.User, { foreignKey: "userId" });
+
+// ChatMessage ↔ User (1:M)
+db.User.hasMany(db.ChatMessage, { foreignKey: "userId" });
+db.ChatMessage.belongsTo(db.User, { foreignKey: "userId" });
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
