@@ -5,4 +5,5 @@ module.exports = (app) => {
 
   app.use("/auth", require("./auth"));
   app.use("/chat", require("./chat"));
+  app.use("/profile", require("./profile"));
 };
