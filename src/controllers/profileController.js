@@ -112,7 +112,8 @@ module.exports = {
     try {
       const userId = req.user.id;
       const { 
-        name, 
+        name,
+        email,
         headline, 
         bio, 
         experienceYears, 
@@ -126,6 +127,10 @@ module.exports = {
       // Update user name if provided
       if (name) {
         await User.update({ name }, { where: { id: userId } });
+      }
+      // Update user email if provided
+      if (email) {
+        await User.update({ email }, { where: { id: userId } });
       }
 
       // Find or create user profile

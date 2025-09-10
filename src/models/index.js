@@ -43,6 +43,10 @@ db.Experience.belongsTo(db.User, { foreignKey: "userId" });
 db.User.belongsToMany(db.Skill, { through: db.UserSkill, foreignKey: "userId" });
 db.Skill.belongsToMany(db.User, { through: db.UserSkill, foreignKey: "skillId" });
 
+// Skill ↔ UserSkill (1:M)
+db.Skill.hasMany(db.UserSkill, { foreignKey: "skillId" });
+db.UserSkill.belongsTo(db.Skill, { foreignKey: "skillId" });
+
 // User ↔ Application (1:M)
 db.User.hasMany(db.Application, { foreignKey: "userId" });
 db.Application.belongsTo(db.User, { foreignKey: "userId" });

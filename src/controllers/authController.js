@@ -261,11 +261,46 @@ module.exports = {
       const decoded = await admin.auth().verifyIdToken(idToken);
       console.log("User ID:", decoded.uid);
 
-      //   GET USER
-      const user = await User.findOne({ where: { firebaseUid: decoded.uid } });
+      // Find user by Firebase UID
+      let user = await User.findOne({ where: { firebaseUid: decoded.uid } });
+      
+      // If user doesn't exist, create a new user
       if (!user) {
-        return res.status(404).json({ success: false, message: "User not found" });
+        user = await User.create({
+          firebaseUid: decoded.uid,
+          email: decoded.email || null,
+          phone: decoded.phone_number || null,
+          name: decoded.name || 'User',
+          isVerified: true,
+          isMobileVerified: true
+        });
       }
+      
+      // Generate JWT token
+      const token = jwt.sign(
+        { 
+          id: user.id, 
+          email: user.email, 
+          role: user.role, 
+          isVerified: user.isVerified,
+          firebaseUid: user.firebaseUid 
+        }, 
+        JWT_SECRET, 
+        { expiresIn: "7d" }
+      );
+      
+      res.json({ 
+        success: true, 
+        message: "Token verified successfully", 
+        token,
+        user: {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          phone: user.phone,
+          role: user.role
+        }
+      });
     } catch (err) {
       console.error(err);
       res.status(401).json({ success: false, message: "Invalid token" });
