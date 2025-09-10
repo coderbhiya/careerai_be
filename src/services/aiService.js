@@ -14,8 +14,8 @@ const chatWithAI = async (messages) => {
         content: messages,
       },
     ],
-    temperature: 0.7,
-    max_tokens: 400,
+    // temperature: 0.7,
+    // max_tokens: 400,
   });
   return completion.choices[0].message.content;
 };

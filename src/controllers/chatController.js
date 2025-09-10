@@ -44,6 +44,8 @@ module.exports = {
         4. If the user already knows their direction, suggest career growth strategies, skills to learn, and trending opportunities in the market.
         5. Always be positive, supportive, and motivating.
         6. Keep the tone natural, like a caring friend, not like a strict teacher.
+
+        ask One question at a time.
         `);
         const result = await db.ChatMessage.create({
           userId: id,
@@ -127,6 +129,8 @@ module.exports = {
         - If the user asks for a job, provide a detailed JD with required skills, experience, and preferences.
         - If the user asks for a course, recommend a relevant course with a link.
         - If the user asks for a project, suggest a project idea with a link.
+
+        ask One question at a time.
       `;
 
       const reply = await aiService.chatWithAI(prompt);
