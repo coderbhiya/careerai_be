@@ -20,6 +20,7 @@ db.Experience = require("./Experience")(sequelize, DataTypes);
 db.Skill = require("./Skill")(sequelize, DataTypes);
 db.UserSkill = require("./UserSkill")(sequelize, DataTypes);
 db.ChatMessage = require("./ChatMessage")(sequelize, DataTypes);
+db.FileAttachment = require("./FileAttachment")(sequelize, DataTypes);
 db.Job = require("./Job")(sequelize, DataTypes);
 db.Application = require("./Application")(sequelize, DataTypes);
 db.ResumeVersion = require("./ResumeVersion")(sequelize, DataTypes);
@@ -71,9 +72,13 @@ db.Certification.belongsTo(db.User, { foreignKey: "userId" });
 db.User.hasMany(db.Notification, { foreignKey: "userId" });
 db.Notification.belongsTo(db.User, { foreignKey: "userId" });
 
-// ChatMessage ↔ User (1:M)
+// User ↔ ChatMessage (1:M)
 db.User.hasMany(db.ChatMessage, { foreignKey: "userId" });
 db.ChatMessage.belongsTo(db.User, { foreignKey: "userId" });
+
+// ChatMessage ↔ FileAttachment (1:M)
+db.ChatMessage.hasMany(db.FileAttachment, { foreignKey: "chatMessageId" });
+db.FileAttachment.belongsTo(db.ChatMessage, { foreignKey: "chatMessageId" });
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

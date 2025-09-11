@@ -21,6 +21,11 @@ module.exports = {
         where: {
           userId: id,
         },
+        include: [{
+          model: db.FileAttachment,
+          required: false
+        }],
+        order: [['id', 'ASC']]
       });
 
       if (chats.length === 0) {
@@ -87,23 +92,58 @@ module.exports = {
     try {
       const { id } = req.user;
       const userId = id;
-      const { message } = req.body;
-      await db.ChatMessage.create(
+      const { message, fileAttachments } = req.body;
+      
+      // Create user message
+      const userMessage = await db.ChatMessage.create(
         {
           userId: userId,
           role: "user",
           message,
+          hasAttachments: fileAttachments && fileAttachments.length > 0,
         },
         { transaction }
       );
+      
+      // Create file attachments if any
+      if (fileAttachments && fileAttachments.length > 0) {
+        for (const attachment of fileAttachments) {
+          await db.FileAttachment.create(
+            {
+              chatMessageId: userMessage.id,
+              fileName: attachment.fileName,
+              originalName: attachment.originalName,
+              filePath: attachment.filePath,
+              fileType: attachment.fileType,
+              fileSize: attachment.fileSize,
+              mimeType: attachment.mimeType,
+            },
+            { transaction }
+          );
+        }
+      }
 
       const chatHistory = await db.ChatMessage.findAll({
         where: {
           userId: userId,
         },
+        include: [{
+          model: db.FileAttachment,
+          required: false
+        }],
         limit: 10,
         order: [["id", "ASC"]],
       });
+
+      // Build file attachment context if present
+      let fileContext = "";
+      if (fileAttachments && fileAttachments.length > 0) {
+        fileContext = `\n\n4. The user has also uploaded the following files with their message:\n`;
+        fileAttachments.forEach((file, index) => {
+          fileContext += `   - File ${index + 1}: ${file.originalName} (${file.fileType}, ${(file.fileSize / 1024).toFixed(2)} KB)\n`;
+        });
+        fileContext += `Please acknowledge these files and offer to help analyze or review them if relevant to career guidance.\n`;
+      }
 
       const prompt = `
       You are CareerAI, a friendly career coach and mentor. 
@@ -112,12 +152,18 @@ module.exports = {
         Your task:
         1. Continue the conversation from where it left off.
         2. This is the old chat between you and the user:
-        ${chatHistory.map((chat) => `${chat.role}: ${chat.message}`).join("\n")}
+        ${chatHistory.map((chat) => {
+          let chatText = `${chat.role}: ${chat.message}`;
+          if (chat.FileAttachments && chat.FileAttachments.length > 0) {
+            chatText += ` [Files: ${chat.FileAttachments.map(f => f.originalName).join(", ")}]`;
+          }
+          return chatText;
+        }).join("\n")}
         3. This is the latest message from the user:
-        ${message}
+        ${message}${fileContext}
 
         Guidelines:
-        - Understand the user’s confusion, interests, skills, goals, and preferences.
+        - Understand the user's confusion, interests, skills, goals, and preferences.
         - If the user is confused (like many college students who follow random advice without clarity), help them explore their real interest.
         - If the user has clarity, guide them on skill enhancement, market needs, and relevant courses.
         - Suggest the right jobs that match their skills, JD, and preferences.
@@ -126,9 +172,9 @@ module.exports = {
         - If the user asks for a job, provide a detailed JD with required skills, experience, and preferences.
         - If the user asks for a course, recommend a relevant course with a link.
         - If the user asks for a project, suggest a project idea with a link.
-        - If the user asks for a job, provide a detailed JD with required skills, experience, and preferences.
-        - If the user asks for a course, recommend a relevant course with a link.
-        - If the user asks for a project, suggest a project idea with a link.
+        - If files are uploaded, acknowledge them and offer to help review/analyze them for career guidance.
+        - For resumes, offer feedback on format, content, and suggestions for improvement.
+        - For portfolios or project files, provide constructive feedback and career relevance.
 
         ask One question at a time.
       `;

@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    hasAttachments: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
   });
   return ChatMessage;
 };
