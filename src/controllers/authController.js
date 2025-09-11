@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const emailService = require("../services/emailService");
 const db = require("../models");
+const { Op } = require("sequelize");
 
 const admin = require("firebase-admin");
 admin.initializeApp({
@@ -304,6 +305,117 @@ module.exports = {
     } catch (err) {
       console.error(err);
       res.status(401).json({ success: false, message: "Invalid token" });
+    }
+  },
+
+  /**
+   * @swagger
+   * /auth/google:
+   *   post:
+   *     summary: Authenticate with Google OAuth
+   *     tags: [Auth]
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             properties:
+   *               idToken:
+   *                 type: string
+   *               userData:
+   *                 type: object
+   *                 properties:
+   *                   uid:
+   *                     type: string
+   *                   email:
+   *                     type: string
+   *                   displayName:
+   *                     type: string
+   *                   photoURL:
+   *                     type: string
+   *                   provider:
+   *                     type: string
+   *     responses:
+   *       200:
+   *         description: Google authentication successful
+   *       401:
+   *         description: Invalid Google token
+   *       500:
+   *         description: Server error
+   */
+  googleAuth: async (req, res) => {
+    try {
+      const { idToken, userData } = req.body;
+      
+      // Verify Google ID token with Firebase Admin
+      const decoded = await admin.auth().verifyIdToken(idToken);
+      
+      // Ensure the token is from Google provider
+      if (!decoded.firebase.sign_in_provider === 'google.com') {
+        return res.status(401).json({ success: false, message: "Invalid Google token" });
+      }
+      
+      // Find user by Firebase UID or email
+       let user = await User.findOne({ 
+         where: { 
+           [Op.or]: [
+             { firebaseUid: decoded.uid },
+             { email: decoded.email }
+           ]
+         } 
+       });
+      
+      // If user doesn't exist, create a new user
+      if (!user) {
+        user = await User.create({
+          firebaseUid: decoded.uid,
+          email: decoded.email,
+          name: userData.displayName || decoded.name || 'Google User',
+          profilePicture: userData.photoURL || null,
+          provider: 'google',
+          isVerified: true,
+          isMobileVerified: false
+        });
+      } else {
+        // Update existing user with Google info if needed
+        await user.update({
+          firebaseUid: decoded.uid,
+          profilePicture: userData.photoURL || user.profilePicture,
+          provider: 'google',
+          isVerified: true
+        });
+      }
+      
+      // Generate JWT token
+      const token = jwt.sign(
+        { 
+          id: user.id, 
+          email: user.email, 
+          role: user.role, 
+          isVerified: user.isVerified,
+          firebaseUid: user.firebaseUid 
+        }, 
+        JWT_SECRET, 
+        { expiresIn: "7d" }
+      );
+      
+      res.json({ 
+        success: true, 
+        message: "Google authentication successful", 
+        token,
+        user: {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          profilePicture: user.profilePicture,
+          role: user.role,
+          provider: user.provider
+        }
+      });
+    } catch (err) {
+      console.error('Google auth error:', err);
+      res.status(401).json({ success: false, message: "Google authentication failed" });
     }
   },
 

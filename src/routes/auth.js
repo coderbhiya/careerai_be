@@ -8,6 +8,7 @@ router.post("/register", authController.register);
 router.post("/login", authController.login);
 router.post("/verify-otp", authController.verifyOtp);
 router.post("/verify-token", authController.verifyToken);
+router.post("/google", authController.googleAuth);
 
 // Protected
 router.get("/profile", authMiddleware, authController.profile);
