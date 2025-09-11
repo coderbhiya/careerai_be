@@ -81,6 +81,23 @@ module.exports = {
    *             properties:
    *               message:
    *                 type: string
+   *               fileAttachments:
+   *                 type: array
+   *                 items:
+   *                   type: object
+   *                   properties:
+   *                     fileName:
+   *                       type: string
+   *                     originalName:
+   *                       type: string
+   *                     filePath:
+   *                       type: string
+   *                     fileType:
+   *                       type: string
+   *                     fileSize:
+   *                       type: number
+   *                     mimeType:
+   *                       type: string
    *     responses:
    *       200:
    *         description: Message sent successfully
