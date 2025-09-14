@@ -21,11 +21,13 @@ module.exports = {
         where: {
           userId: id,
         },
-        include: [{
-          model: db.FileAttachment,
-          required: false
-        }],
-        order: [['id', 'ASC']]
+        include: [
+          {
+            model: db.FileAttachment,
+            required: false,
+          },
+        ],
+        order: [["id", "ASC"]],
       });
 
       if (chats.length === 0) {
@@ -110,7 +112,7 @@ module.exports = {
       const { id } = req.user;
       const userId = id;
       const { message, fileAttachments } = req.body;
-      
+
       // Create user message
       const userMessage = await db.ChatMessage.create(
         {
@@ -121,7 +123,7 @@ module.exports = {
         },
         { transaction }
       );
-      
+
       // Create file attachments if any
       if (fileAttachments && fileAttachments.length > 0) {
         for (const attachment of fileAttachments) {
@@ -140,26 +142,62 @@ module.exports = {
         }
       }
 
+      // Fetch recent chat history (increased limit for better context)
       const chatHistory = await db.ChatMessage.findAll({
         where: {
           userId: userId,
         },
-        include: [{
-          model: db.FileAttachment,
-          required: false
-        }],
-        limit: 10,
+        include: [
+          {
+            model: db.FileAttachment,
+            required: false,
+          },
+        ],
+        limit: 20,
         order: [["id", "ASC"]],
       });
 
-      // Build file attachment context if present
+      // Fetch ALL file attachments from the user's entire conversation history
+      const allUserFiles = await db.FileAttachment.findAll({
+        include: [
+          {
+            model: db.ChatMessage,
+            where: {
+              userId: userId,
+              role: "user",
+            },
+            required: true,
+          },
+        ],
+        order: [["id", "DESC"]],
+      });
+
+      // Build comprehensive file context
       let fileContext = "";
+
+      // Add current message files if any
       if (fileAttachments && fileAttachments.length > 0) {
-        fileContext = `\n\n4. The user has also uploaded the following files with their message:\n`;
+        fileContext += `\n\n4. The user has uploaded the following files with their current message:\n`;
         fileAttachments.forEach((file, index) => {
           fileContext += `   - File ${index + 1}: ${file.originalName} (${file.fileType}, ${(file.fileSize / 1024).toFixed(2)} KB)\n`;
         });
-        fileContext += `Please acknowledge these files and offer to help analyze or review them if relevant to career guidance.\n`;
+      }
+
+      // Add all previously uploaded files for context
+      if (allUserFiles && allUserFiles.length > 0) {
+        const previousFiles = allUserFiles.filter((file) => !fileAttachments?.some((currentFile) => currentFile.fileName === file.fileName));
+
+        if (previousFiles.length > 0) {
+          fileContext += `\n\n5. Previously uploaded files in this conversation that you can reference:\n`;
+          previousFiles.forEach((file, index) => {
+            fileContext += `   - ${file.originalName} (${file.fileType}, uploaded earlier)\n`;
+          });
+          fileContext += `\nNote: The user may ask questions about any of these previously uploaded files. Please reference them when relevant.\n`;
+        }
+      }
+
+      if (fileContext) {
+        fileContext += `\nPlease acknowledge any files mentioned and offer to help analyze or review them if relevant to career guidance.\n`;
       }
 
       const prompt = `
@@ -169,13 +207,15 @@ module.exports = {
         Your task:
         1. Continue the conversation from where it left off.
         2. This is the old chat between you and the user:
-        ${chatHistory.map((chat) => {
-          let chatText = `${chat.role}: ${chat.message}`;
-          if (chat.FileAttachments && chat.FileAttachments.length > 0) {
-            chatText += ` [Files: ${chat.FileAttachments.map(f => f.originalName).join(", ")}]`;
-          }
-          return chatText;
-        }).join("\n")}
+        ${chatHistory
+          .map((chat) => {
+            let chatText = `${chat.role}: ${chat.message}`;
+            if (chat.FileAttachments && chat.FileAttachments.length > 0) {
+              chatText += ` [Files: ${chat.FileAttachments.map((f) => f.originalName).join(", ")}]`;
+            }
+            return chatText;
+          })
+          .join("\n")}
         3. This is the latest message from the user:
         ${message}${fileContext}
 
@@ -189,9 +229,11 @@ module.exports = {
         - If the user asks for a job, provide a detailed JD with required skills, experience, and preferences.
         - If the user asks for a course, recommend a relevant course with a link.
         - If the user asks for a project, suggest a project idea with a link.
-        - If files are uploaded, acknowledge them and offer to help review/analyze them for career guidance.
+        - IMPORTANT: When the user asks about previously uploaded documents/files, reference them by name and provide relevant guidance based on those files.
+        - If files are uploaded (current or previous), acknowledge them and offer to help review/analyze them for career guidance.
         - For resumes, offer feedback on format, content, and suggestions for improvement.
         - For portfolios or project files, provide constructive feedback and career relevance.
+        - Remember all files uploaded in this conversation and reference them when the user asks follow-up questions.
 
         ask One question at a time.
       `;
@@ -208,8 +250,8 @@ module.exports = {
       await transaction.commit();
       res.json({ success: true, reply });
     } catch (err) {
-      transaction.rollback();
       console.error(err);
+      transaction.rollback();
       res.status(500).json({ success: false, message: "Server error" });
     }
   },
