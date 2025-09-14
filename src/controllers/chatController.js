@@ -1,5 +1,7 @@
+const path = require("path");
 const db = require("../models");
 const aiService = require("../services/aiService");
+const fs = require("fs");
 
 module.exports = {
   /**
@@ -126,20 +128,16 @@ module.exports = {
 
       // Create file attachments if any
       if (fileAttachments && fileAttachments.length > 0) {
-        for (const attachment of fileAttachments) {
-          await db.FileAttachment.create(
-            {
-              chatMessageId: userMessage.id,
-              fileName: attachment.fileName,
-              originalName: attachment.originalName,
-              filePath: attachment.filePath,
-              fileType: attachment.fileType,
-              fileSize: attachment.fileSize,
-              mimeType: attachment.mimeType,
-            },
-            { transaction }
-          );
-        }
+        const attachmentsData = fileAttachments.map((f) => ({
+          chatMessageId: userMessage.id,
+          fileName: f.fileName,
+          originalName: f.originalName,
+          filePath: f.filePath,
+          fileType: f.fileType,
+          fileSize: f.fileSize,
+          mimeType: f.mimeType,
+        }));
+        await db.FileAttachment.bulkCreate(attachmentsData, { transaction });
       }
 
       // Fetch recent chat history (increased limit for better context)
@@ -169,6 +167,9 @@ module.exports = {
             required: true,
           },
         ],
+        where: {
+          chatMessageId: chatHistory.map((chat) => chat.id),
+        },
         order: [["id", "DESC"]],
       });
 
@@ -238,7 +239,12 @@ module.exports = {
         ask One question at a time.
       `;
 
-      const reply = await aiService.chatWithAI(prompt);
+      const files = allUserFiles.map((file) => ({
+        name: file.fileName,
+        path: file.filePath.replace(`${process.env.APP_URL}/`, ""),
+      }));
+
+      const reply = await aiService.chatWithAI(prompt, files);
       await db.ChatMessage.create(
         {
           userId: userId,

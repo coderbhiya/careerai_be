@@ -89,7 +89,7 @@ module.exports = {
       const fileData = {
         fileName: req.file.filename,
         originalName: req.file.originalname,
-        filePath: `${process.env.APP_URL}/uploads/chat-files/${req.file.filename}`,
+        filePath: `/uploads/chat-files/${req.file.filename}`,
         fileType: path.extname(req.file.originalname),
         fileSize: req.file.size,
         mimeType: req.file.mimetype,

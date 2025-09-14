@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(500),
       allowNull: false,
       get() {
-        return `${process.env.APP_URL}${this.getDataValue("filePath")}`;
+        return `${process.env.APP_URL}/${this.getDataValue("filePath")}`;
       },
     },
     fileType: {
