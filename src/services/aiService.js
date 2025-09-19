@@ -14,6 +14,14 @@ const chatWithAI = async (userMessage, files = []) => {
     if (files && files.length > 0) {
       for (const f of files) {
         console.log(f);
+
+        const filePath = path.resolve(__dirname, "../../", f.path);
+        // check file exist in path
+        if (!fs.existsSync(filePath)) {
+          console.warn(`File not found: ${filePath}`);
+          continue;
+        }
+
         const uploaded = await client.files.create({
           file: fs.createReadStream(path.join(__dirname, "../../" + f.path)),
           purpose: "assistants",
