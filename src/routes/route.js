@@ -7,4 +7,5 @@ module.exports = (app) => {
   app.use("/chat", require("./chat"));
   app.use("/profile", require("./profile"));
   app.use("/files", require("./files"));
+  app.use("/jobs", require("./jobs"));
 };
