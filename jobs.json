@@ -1,0 +1,533 @@
+{
+  "status": "OK",
+  "request_id": "85e777b0-4564-4f1d-a7d0-0bb4e0840afe",
+  "parameters": {
+    "query": "developer",
+    "page": 1,
+    "num_pages": 1,
+    "date_posted": "all",
+    "country": "in",
+    "language": "en"
+  },
+  "data": [
+    {
+      "job_id": "TTYGcOozu1a6UCoSAAAAAA==",
+      "job_title": "IndiaNIC Infotech - Junior Game Developer - Unity3D",
+      "employer_name": "IndiaNIC Infotech Limited",
+      "employer_logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsnLFyCJtkA7wBB08Lhi8Hzv3YnRxlImD29_yA&s=0",
+      "employer_website": "http://www.indianic.com/",
+      "job_publisher": "LinkedIn",
+      "job_employment_type": "Full–time",
+      "job_employment_types": [
+        "FULLTIME"
+      ],
+      "job_apply_link": "https://in.linkedin.com/jobs/view/indianic-infotech-junior-game-developer-unity3d-at-indianic-infotech-limited-4302212804?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "job_apply_is_direct": false,
+      "apply_options": [
+        {
+          "publisher": "LinkedIn",
+          "apply_link": "https://in.linkedin.com/jobs/view/indianic-infotech-junior-game-developer-unity3d-at-indianic-infotech-limited-4302212804?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        },
+        {
+          "publisher": "MYTAT",
+          "apply_link": "https://mytat.co/job-listing/reactjs-developer-556501?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        }
+      ],
+      "job_description": "Key Responsibilities\n• Implement core gameplay features, mechanics, and UI in Unity.\n• Integrate game assets (art, animations, audio) and ensure smooth functionality.\n• Collaborate with designers, artists, and senior developers to deliver polished player experiences.\n• Participate in brainstorming, feature planning, and design discussions.\n• Debug, profile, and optimize games for performance across platforms.\n• Follow Agile development practices and meet sprint deliverables.\n• Contribute to code reviews and maintain coding best Skills & Qualifications :\n• B.E./B.Tech/BCA/MCA or equivalent in Computer Science, Game Development, or IT.\n• 11.5 years of professional or internship experience in Unity and C#.\n• Hands-on experience with Unity physics, animation systems, prefabs, and scene management.\n• Understanding of the game loop, performance optimization, and mobile platform constraints.\n• Good problem-solving and debugging skills.\n• Portfolio, GitHub, or demo projects showcasing Unity to Have :\n• Experience using Unity Profiler, animation controllers, or visual scripting tools.\n• Familiarity with version control tools like Git.\n• Integration experience with Firebase or third-party SDKs (ads, analytics, leaderboards, etc.).\n• Exposure to multiplayer frameworks like Photon or Mirror.\n• Understanding of mobile game UI/UX best Skills :\n• Strong communication and teamwork skills.\n• Willingness to learn, adapt, and accept feedback.\n• Ability to work both independently and collaboratively.\n• Passion for gaming and a player-first We Offer :\n• Structured mentorship and training from senior game developers.\n• Involvement in live projects from day one.\n• Opportunities to grow into senior or specialized roles in game development.\n• Access to learning resources, Unity certification support, and industry talks.\n• A friendly, creative, and performance-driven work environment.\n\n(ref:hirist.tech)",
+      "job_is_remote": false,
+      "job_posted_at": "3 hours ago",
+      "job_posted_at_timestamp": 1758157200,
+      "job_posted_at_datetime_utc": "2025-09-18T01:00:00.000Z",
+      "job_location": "India",
+      "job_city": null,
+      "job_state": null,
+      "job_country": "IN",
+      "job_latitude": 20.593684,
+      "job_longitude": 78.96288,
+      "job_benefits": null,
+      "job_google_link": "https://www.google.com/search?q=jobs&gl=in&hl=en&udm=8#vhid=vt%3D20/docid%3DTTYGcOozu1a6UCoSAAAAAA%3D%3D&vssid=jobs-detail-viewer",
+      "job_salary": null,
+      "job_min_salary": null,
+      "job_max_salary": null,
+      "job_salary_period": null,
+      "job_highlights": {},
+      "job_onet_soc": "15113200",
+      "job_onet_job_zone": "4"
+    },
+    {
+      "job_id": "zD0LpLK8T1fbai4qAAAAAA==",
+      "job_title": "BizTalk (Azure Integration Developer)",
+      "employer_name": "SWITS DIGITAL Private Limited",
+      "employer_logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtwzg2BZTTJZq0iRBmP8-5Gxfo0jrHyriyXgIO&s=0",
+      "employer_website": null,
+      "job_publisher": "LinkedIn",
+      "job_employment_type": "Contractor",
+      "job_employment_types": [
+        "CONTRACTOR"
+      ],
+      "job_apply_link": "https://in.linkedin.com/jobs/view/biztalk-azure-integration-developer-at-swits-digital-private-limited-4301756749?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "job_apply_is_direct": false,
+      "apply_options": [
+        {
+          "publisher": "LinkedIn",
+          "apply_link": "https://in.linkedin.com/jobs/view/biztalk-azure-integration-developer-at-swits-digital-private-limited-4301756749?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        }
+      ],
+      "job_description": "Job Title: BizTalk (Azure Integration Developer)\n\nLocation: Bangalore\n\nJob Type: Contract (3 Months – Extendable)\n\nExperience: 5 – 8 Years\n\nJob Overview\n\nWe are looking for an experienced BizTalk and Azure Integration Developer to design, develop, and maintain integration solutions. The ideal candidate will have strong experience in BizTalk Server, Azure API Management (APIM), and cloud/hybrid integration strategies.\n\nKey Responsibilities\n\nAzure API Management (APIM):\n• Design, develop, and manage APIs using Azure APIM.\n• Implement API security using OAuth2, OpenID Connect, and API gateway policies.\n• Monitor API performance, troubleshoot issues, and optimize usage.\n• Collaborate with stakeholders to design API consumption models and integration strategies.\n\nBizTalk Integration\n• Develop and maintain BizTalk Server solutions, including orchestrations, pipelines, schemas, and maps.\n• Integrate BizTalk solutions with enterprise applications, databases, and external systems.\n• Migrate BizTalk workflows to Azure cloud or hybrid integration environments.\n• Provide operational support for existing BizTalk implementations.\n\nCollaboration & Support\n• Work closely with business stakeholders, architects, and developers to understand integration requirements.\n• Provide guidance on best practices for API design, cloud integration, and BizTalk workflows.\n\nRequired Skills\n• Strong experience in BizTalk Server development and integration.\n• Hands-on experience with Azure API Management (APIM).\n• Knowledge of API security protocols: OAuth2, OpenID Connect.\n• Experience with cloud and hybrid integration solutions.\n• Excellent troubleshooting and performance optimization skills.\n• Strong collaboration and communication skills.",
+      "job_is_remote": false,
+      "job_posted_at": "19 hours ago",
+      "job_posted_at_timestamp": 1758099600,
+      "job_posted_at_datetime_utc": "2025-09-17T09:00:00.000Z",
+      "job_location": "India",
+      "job_city": null,
+      "job_state": null,
+      "job_country": "IN",
+      "job_latitude": 20.593684,
+      "job_longitude": 78.96288,
+      "job_benefits": null,
+      "job_google_link": "https://www.google.com/search?q=jobs&gl=in&hl=en&udm=8#vhid=vt%3D20/docid%3DzD0LpLK8T1fbai4qAAAAAA%3D%3D&vssid=jobs-detail-viewer",
+      "job_salary": null,
+      "job_min_salary": null,
+      "job_max_salary": null,
+      "job_salary_period": null,
+      "job_highlights": {},
+      "job_onet_soc": "15113200",
+      "job_onet_job_zone": "4"
+    },
+    {
+      "job_id": "2MhQK7TvSQTwWjMXAAAAAA==",
+      "job_title": "Digital Engineering Senior Developer",
+      "employer_name": "Ernst & Young LLP ( EY India )",
+      "employer_logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkM-Lv4cSBBsaW18b5FwHQXkE3w_jN2s105sug&s=0",
+      "employer_website": "http://www.ey.com/IN/EN",
+      "job_publisher": "Apna",
+      "job_employment_type": "Full–time",
+      "job_employment_types": [
+        "FULLTIME"
+      ],
+      "job_apply_link": "https://apna.co/job/noida/de-nclc-digitalengineering-search-senior-developer-1828549458?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "job_apply_is_direct": false,
+      "apply_options": [
+        {
+          "publisher": "Apna",
+          "apply_link": "https://apna.co/job/noida/de-nclc-digitalengineering-search-senior-developer-1828549458?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        }
+      ],
+      "job_description": "DE-NCLC- DigitalEngineering Search Senior Developer-GDSN02\n\nAt EY, you’ll have the chance to build a career as unique as you are, with the global scale, support, inclusive culture and technology to become the best version of you. And we’re counting on your unique voice and perspective to help EY become even better, too. Join us and build an exceptional experience for yourself, and a better working world for all.\n\nDigital Engineering Senior 1-2– Consulting EY GDS Consulting digital, is looking out for experienced web content management expert, especially on Microsoft Office365. Resource will be part of Enterprise Content Management team delivering to clients across regions.\n\nThe opportunity\n\nWe are seeking skilled professionals with expertise in .NET, custom SharePoint development, and Retrieval-Augmented Generation (RAG) implementation to join our Digital Engineering Consulting team. This role offers a unique opportunity to contribute to innovative technology solutions within a leading firm, playing a key role in expanding our digital service capabilities.\n\nYour key responsibilities\n\n• Produces high-quality solution or infrastructure deliverables in accordance with project timelines and specifications, using sound coding and programming skills\n• Performs coding, debugging, testing and troubleshooting throughout the development process contributing to moderately complex aspects of a project\n• Maintains and enhances systems by fixing complicated errors, raising risks and escalating issues where necessary\n• Works with users to capture detailed requirements, translating designs and solution architecture into design specifications\n• Monitors and reports on potential risks/opportunities of emerging technologies, and seeks areas for continuous improvement\n• Ensures all activities adhere to the relevant processes, procedures, standards and technical design\n• Develop and promote best practices for usage, operations and development\n• Strong analytical and communication skills with intense drive to learn and adopt.\n\nSkills and attributes\n\n• 4-6 years of professional experience\n• SharePoint Development: SPFx, PnP Framework, PowerShell, SharePoint Online (Intranet/Extranet architecture).\n• .NET Technologies: C#, ASP.NET MVC.\n• Client-Side Development: JavaScript, TypeScript, React JS, AngularJS, Fluent UI, Knockout JS, HTML5, CSS, Ajax, JSON, jQuery.\n• API Integration: REST, SOAP, authentication (OAuth, OpenID Connect).\n• Python: Experience in building RAG (Retrieval-Augmented Generation) solutions.Core Skills:\n• Desirable Skills: (good to have)\n• AI Builder: Custom AI models, integration with Power Platform\n• Microsoft 365 Copilot: Integration with M365 apps\n• Azure DevOps: CI/CD, source control\n• Microsoft Teams: App development, integration\n• Passion for the web, open source development, and for helping us build meaningful experiences.\n• Experience in consulting strongly preferred.\n• Strong problem-solving abilities, taking initiative, and the ability to thrive under pressure.\n• Maintain a positive and constructive outlook, focus on driving results, finding solutions / breakthroughs to solve problems and challenges; has a positive influence on peers.\n• Interpersonal and communication skills.\n• Respond positively to opportunities to be involved in brainstorming and iterative work. Handle times of change in a way that drives innovation and iteration.\n• Work in collaborative and supportive manner.\n• Listen carefully to provided information and ask clarifying questions. Actively listen as a learner rather than a passive recipient of information.\n• Bachelor's or Master's degree in Computer Science or related discipline preferred.\n\nSoft Skills\n\n• Excellent Communication Skills\n• Team Player\n• Self-starter and highly motivated\n• Ability to handle high pressure and fast paced situations\n• Excellent presentation skills\n• Ability to work with globally distributed teams\n\nTo qualify for the role, you must have\n\n• A bachelor's or master's degree\n• A minimum of4+ years of experience, preferably background in a professional services firm.\n• Strong knowledge of SharePoint 2016/2019/o365\n• Strong knowledge of SharePoint Framework (SPFx)\n• Strong knowledge of TypeScript, React JS, AngularJS & Fluent UI.\n• Strong knowledge of PowerShell & PnP.\n• Excellent communication skills with consulting experience preferred\n\nIdeally, you’ll also have\n• Analytical ability to manage multiple projects and prioritize tasks into manageable work products.\n• Can operate independently or with minimum supervision\n\nWhat working at EY offers\n\nAt EY, we’re dedicated to helping our clients, from start–ups to Fortune 500 companies — and the work we do with them is as varied as they are.\nYou get to work with inspiring and meaningful projects. Our focus is education and coaching alongside practical experience to ensure your personal development. We value our employees and you will be able to control your own development with an individual progression plan. You will quickly grow into a responsible role with challenging and stimulating assignments. Moreover, you will be part of an interdisciplinary environment that emphasizes high quality and knowledge exchange. Plus, we offer:\n\n• Support, coaching and feedback from some of the most engaging colleagues around\n• Opportunities to develop new skills and progress your career\n• The freedom and flexibility to handle your role in a way that’s right for you\n\nEY | Building a better working world\n\nEY exists to build a better working world, helping to create long-term value for clients, people and society and build trust in the capital markets.\n\nEnabled by data and technology, diverse EY teams in over 150 countries provide trust through assurance and help clients grow, transform and operate.\n\nWorking across assurance, consulting, law, strategy, tax and transactions, EY teams ask better questions to find new answers for the complex issues facing our world today.\n\nMore about this Digital Engineering Senior Developer job\n\nErnst & Young LLP ( EY India ) is aggressively hiring for the job profile of Digital Engineering Senior Developer at undefined in null locality. Kindly go through the FAQs below to get all answers related to the given job.\n\n1. How much salary can I expect as a Digital Engineering Senior Developer in Ernst & Young LLP ( EY India ) in undefined?\n\nAns. You can expect a minimum salary of 0 INR. The salary offered will depend on your skills, experience and performance in the interview.\n\n2. What is the eligibility criteria to apply for Digital Engineering Senior Developer in Ernst & Young LLP ( EY India ) in undefined?\n\nAns. The candidate should have completed undefined degree and people who have 4 to 6 years are eligible to apply for this job. You can apply for more jobs in undefined to get hired quickly.\n\n3. Is there any specific skill required for this job?\n\nAns. The candidate should have undefined skills and sound communication skills for this job.\n\n4. Who can apply for this job?\n\nAns. Both Male and Female candidates can apply for this job.\n\n5. Is it a work from home job?\n\nAns. No, it’s not a work from home job and can’t be done online. You can explore and apply for other work from home jobs in undefined at apna.\n\n6. Are there any charges or deposits required while applying for the role or while joining?\n\nAns. No work-related deposit needs to be made during your employment with the company.\n\n7. How can I apply for this job?\n\nAns. Go to the apna app and apply for this job. Click on the apply button and call HR directly to schedule your interview.\n\n8. What is the last date to apply?\n\nAns. The last date to apply for this job is .\n\nFor more details, download apna app and find Full Time jobs in undefined. Through apna, you can find jobs in 74 cities across India. Join NOW!",
+      "job_is_remote": false,
+      "job_posted_at": "2 days ago",
+      "job_posted_at_timestamp": 1757980800,
+      "job_posted_at_datetime_utc": "2025-09-16T00:00:00.000Z",
+      "job_location": "India",
+      "job_city": null,
+      "job_state": null,
+      "job_country": "IN",
+      "job_latitude": 20.593684,
+      "job_longitude": 78.96288,
+      "job_benefits": null,
+      "job_google_link": "https://www.google.com/search?q=jobs&gl=in&hl=en&udm=8#vhid=vt%3D20/docid%3D2MhQK7TvSQTwWjMXAAAAAA%3D%3D&vssid=jobs-detail-viewer",
+      "job_salary": null,
+      "job_min_salary": null,
+      "job_max_salary": null,
+      "job_salary_period": null,
+      "job_highlights": {},
+      "job_onet_soc": "15113200",
+      "job_onet_job_zone": "4"
+    },
+    {
+      "job_id": "_t4mJZgPR5-TzEhQAAAAAA==",
+      "job_title": "Backend Developer – APIs, Database & Admin Panel",
+      "employer_name": "ZeOrbit - Website Designer | Mobile App Makers",
+      "employer_logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQit66eU4A13veqkRNhJ9MYv5M8nxlXvKAoI59F&s=0",
+      "employer_website": null,
+      "job_publisher": "LinkedIn",
+      "job_employment_type": "Contractor",
+      "job_employment_types": [
+        "CONTRACTOR"
+      ],
+      "job_apply_link": "https://in.linkedin.com/jobs/view/backend-developer-%E2%80%93-apis-database-admin-panel-at-zeorbit-website-designer-mobile-app-makers-4300767834?refId=Fb7YO9uo6nyHcpv7ZZex8Q%3D%3D&trackingId=KzTkSPx2111ksots5L85iA%3D%3D&position=24&pageNum=0&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "job_apply_is_direct": false,
+      "apply_options": [
+        {
+          "publisher": "LinkedIn",
+          "apply_link": "https://in.linkedin.com/jobs/view/backend-developer-%E2%80%93-apis-database-admin-panel-at-zeorbit-website-designer-mobile-app-makers-4300767834?refId=Fb7YO9uo6nyHcpv7ZZex8Q%3D%3D&trackingId=KzTkSPx2111ksots5L85iA%3D%3D&position=24&pageNum=0&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        }
+      ],
+      "job_description": "About\n\nZeOrbit is a forward-thinking digital solutions company specializing in innovative mobile and web applications. We are currently expanding our development team to build scalable, secure, and feature-rich platforms for global clients.\n\nWe are seeking a Backend Developer who will play a critical role in building and maintaining the server-side architecture, APIs, databases, and admin dashboards that power our solutions.\n\nKey Responsibilities\n• API Development & Integration\n• Design, build, and maintain RESTful/GraphQL APIs for mobile and web applications.\n• Integrate third-party services and ensure seamless communication across platforms.\n• Database Design & Management\n• Develop scalable database schemas (PostgreSQL, MySQL, MongoDB).\n• Implement efficient data modeling, indexing, and query optimization.\n• Ensure data security, backups, and recovery protocols.\n• Authentication & Security\n• Implement secure login, session management, and authorization layers (JWT, OAuth2).\n• Protect sensitive user data with encryption and best practices.\n• Admin Panel & Dashboard Development\n• Build intuitive admin dashboards for managing users, analytics, rewards, and workflows.\n• Implement role-based access control and reporting modules.\n• Performance & Deployment\n• Optimize backend performance for scalability and high availability.\n• Deploy backend services to cloud platforms (AWS, GCP, Azure, Firebase).\n• Set up CI/CD pipelines for streamlined releases.\n• Collaboration\n• Work closely with frontend/mobile developers and UI/UX designers.\n• Participate in sprint planning, code reviews, and agile ceremonies.\n\nRequired Skills & Qualifications\n• 3-5 years of Strong proficiency in Node.js, Python, or Java (Node.js preferred)\n• Solid experience in REST API / GraphQL design.\n• Hands-on expertise with SQL & NoSQL databases (PostgreSQL, MySQL, MongoDB).\n• Strong understanding of authentication, authorization, and API security.\n• Experience in building and managing admin dashboards.\n• Familiarity with cloud deployment (AWS, GCP, Firebase).\n• Proficiency with Git, CI/CD, and containerization (Docker).\n\nNice-to-Have Skills\n• Experience with microservices architecture & Kubernetes.\n• Knowledge of AI/ML API integration.\n• Familiarity with real-time data processing (WebSockets, Kafka, Redis).\n• Understanding of multi-language support & localization.\n\nFeel free to submit the resume directly at career.zeorbit@gmail.com",
+      "job_is_remote": true,
+      "job_posted_at": "2 days ago",
+      "job_posted_at_timestamp": 1757980800,
+      "job_posted_at_datetime_utc": "2025-09-16T00:00:00.000Z",
+      "job_location": "India",
+      "job_city": null,
+      "job_state": null,
+      "job_country": "IN",
+      "job_latitude": 20.593684,
+      "job_longitude": 78.96288,
+      "job_benefits": null,
+      "job_google_link": "https://www.google.com/search?q=jobs&gl=in&hl=en&udm=8#vhid=vt%3D20/docid%3D_t4mJZgPR5-TzEhQAAAAAA%3D%3D&vssid=jobs-detail-viewer",
+      "job_salary": null,
+      "job_min_salary": null,
+      "job_max_salary": null,
+      "job_salary_period": null,
+      "job_highlights": {},
+      "job_onet_soc": "15113200",
+      "job_onet_job_zone": "4"
+    },
+    {
+      "job_id": "YSMROmGhqaAOChtkAAAAAA==",
+      "job_title": "06 - Associate Engineer, Software 1",
+      "employer_name": "Celestica",
+      "employer_logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCgBaED6I0kQJQOEVu5JjwdALWG-t4dgeO0z5z&s=0",
+      "employer_website": "http://www.celestica.com/",
+      "job_publisher": "LinkedIn",
+      "job_employment_type": "Full–time",
+      "job_employment_types": [
+        "FULLTIME"
+      ],
+      "job_apply_link": "https://in.linkedin.com/jobs/view/06-associate-engineer-software-1-at-celestica-4301900894?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "job_apply_is_direct": false,
+      "apply_options": [
+        {
+          "publisher": "LinkedIn",
+          "apply_link": "https://in.linkedin.com/jobs/view/06-associate-engineer-software-1-at-celestica-4301900894?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        }
+      ],
+      "job_description": "Req ID: 128936\n\nRemote Position: No\n\nRegion: Asia\n\nCountry: India\n\nState/Province: Chennai\n\nCity: Guindy, Chennai\n\nGeneral Overview\n\nFunctional Area: Engineering\n\nCareer Stream: Design - Software Engineering\n\nSAP Short Name: AST-ENG-DSE\n\nJob Level: Level 06\n\nIC/MGR: Individual Contributor\n\nDirect/Indirect Indicator: Indirect\n\nSummary\n\nThe Associate Engineer, Software develops, debugs, tests, deploys and supports code to be deployed in systems/products/equipment for various applications. They write, debug, maintain, and test software in various common languages and for software at various levels in the hierarchy (from Firmware to Application). Software creation follows an agreed to development process (such as Agile, Scrum, etc.) and complies with the product life cycle development (phase/gate deliverables).\n\nThe Associate Engineer, Software works in cross functional teams with other designers, customers, manufacturing engineering and project leadership to ensure robust and high quality product development. Enhance designs with feedback from reviews in areas such as manufacturing, test, supply chain, reliability, industrial design and simulations.\n\nDetailed Description\n\nPerforms tasks such as, but not limited to, the following:\n• Work as a team member who understands/interprets technical problems and provides technical support.\n• Solve assigned problems under guidance of more senior engineers.\n• Analyze, design and develop tests and test-automation suites.\n• Design and develop a processing platform using various configuration management technologies.\n• Test software development methodology (may be done in agile environment)\n• Provide ongoing maintenance, support and enhancements in existing systems and platforms.\n• Collaborate cross-functionally with customers, users, project managers and other engineers including Peer-Reviews to achieve elegant solutions.\n• Provide recommendations for continuous improvement.\n• Work alongside other engineers on the team to elevate technology and consistently apply best practices.\n• Keep up to date with relevant industry knowledge and regulations\n\nKnowledge/Skills/Competencies\n• Project Management - Ability to manage a single line engineering project with a limited number of participants. Create a project/change management plan, establish and distribute project roles, and communicate what is needed from the project participants in order to make the project successful.\n• Leadership - Demonstrate \"Individual Leadership Behaviors\" as per Celestica Leadership Imperatives.\n• Financial Acumen / Business Planning -Solid understanding of Celestica’s budgeting and accounting system and the cost accounting practices relevant to engineering work. Always act with the awareness of your work's impact on financial results. Communicate clearly and timely all aspects of your work that may have an influence on the profitability of the project and/or what is necessary for proper accounting and controlling.\n• The following competencies may also be required and performed with help or under supervision: Coaching/Mentoring; Communication/Negotiation/Presentation; Creative Problem Solving; Customer Interaction/Stakeholder Management; Quality & Lean; Working Effectively with Others; D/PFMEA; 8D/Corrective Action; Equipment Safety; Design of Experiments (DOE).\n\nPhysical Demands\n• Duties of this position are performed in a normal office environment.\n• Duties may require extended periods of sitting and sustained visual concentration on a computer monitor or on numbers and other detailed data.\n• Repetitive manual movements (e.g., data entry, using a computer mouse, using a calculator, etc.) are frequently required.\n• Occasional travel may be required.\n\nTypical Experience\n• 1 to 3 years\n\nTypical Education\n\nBachelor degree or consideration of an equivalent combination of education and experience.\n\nEducational Requirements may vary by Geography\n\nNotes\n\nThis job description is not intended to be an exhaustive list of all duties and responsibilities of the position. Employees are held accountable for all duties of the job. Job duties and the % of time identified for any function are subject to change at any time.\n\nCelestica is an equal opportunity employer. All qualified applicants will receive consideration for employment and will not be discriminated against on any protected status (including race, religion, national origin, gender, sexual orientation, age, marital status, veteran or disability status or other characteristics protected by law).\n\nAt Celestica we are committed to fostering an inclusive, accessible environment, where all employees and customers feel valued, respected and supported. Special arrangements can be made for candidates who need it throughout the hiring process. Please indicate your needs and we will work with you to meet them.\n\nCompany Overview\n\nCelestica (NYSE, TSX: CLS) enables the world’s best brands. Through our recognized customer-centric approach, we partner with leading companies in Aerospace and Defense, Communications, Enterprise, HealthTech, Industrial, Capital Equipment and Energy to deliver solutions for their most complex challenges. As a leader in design, manufacturing, hardware platform and supply chain solutions, Celestica brings global expertise and insight at every stage of product development – from drawing board to full-scale production and after-market services for products from advanced medical devices, to highly engineered aviation systems, to next-generation hardware platform solutions for the Cloud. Headquartered in Toronto, with talented teams spanning 40+ locations in 13 countries across the Americas, Europe and Asia, we imagine, develop and deliver a better future with our customers.\n\nCelestica would like to thank all applicants, however, only qualified applicants will be contacted.\n\nCelestica does not accept unsolicited resumes from recruitment agencies or fee based recruitment services.",
+      "job_is_remote": false,
+      "job_posted_at": "14 hours ago",
+      "job_posted_at_timestamp": 1758117600,
+      "job_posted_at_datetime_utc": "2025-09-17T14:00:00.000Z",
+      "job_location": "India",
+      "job_city": null,
+      "job_state": null,
+      "job_country": "IN",
+      "job_latitude": 20.593684,
+      "job_longitude": 78.96288,
+      "job_benefits": null,
+      "job_google_link": "https://www.google.com/search?q=jobs&gl=in&hl=en&udm=8#vhid=vt%3D20/docid%3DYSMROmGhqaAOChtkAAAAAA%3D%3D&vssid=jobs-detail-viewer",
+      "job_salary": null,
+      "job_min_salary": null,
+      "job_max_salary": null,
+      "job_salary_period": null,
+      "job_highlights": {},
+      "job_onet_soc": "15113200",
+      "job_onet_job_zone": "4"
+    },
+    {
+      "job_id": "yZRzQ5V6iaBh5b02AAAAAA==",
+      "job_title": "Java Backend Developer",
+      "employer_name": "BNP Paribas India Solutions",
+      "employer_logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE0FsAgi8aqJGmDp9Av9_rGvWa2nxN8TcZdnHm&s=0",
+      "employer_website": "http://www.indiasolutions.bnpparibas.co.in/",
+      "job_publisher": "Groupe BNP Paribas",
+      "job_employment_type": "Full–time",
+      "job_employment_types": [
+        "FULLTIME"
+      ],
+      "job_apply_link": "https://group.bnpparibas/en/careers/job-offer/java-backend-developer-7?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "job_apply_is_direct": false,
+      "apply_options": [
+        {
+          "publisher": "Groupe BNP Paribas",
+          "apply_link": "https://group.bnpparibas/en/careers/job-offer/java-backend-developer-7?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        },
+        {
+          "publisher": "Indeed",
+          "apply_link": "https://in.indeed.com/viewjob?jk=5faae19be0d06642&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": true
+        },
+        {
+          "publisher": "Glassdoor",
+          "apply_link": "https://www.glassdoor.co.in/job-listing/java-backend-developer-iscistech-business-solution-sdn-bhd-JV_KO0,22_KE23,58.htm?jl=1009874010075&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": true
+        },
+        {
+          "publisher": "Shine",
+          "apply_link": "https://www.shine.com/jobs/java-backend-developer/mogi-i-o-ott-podcast-short-video-apps-for-you/17626830?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        },
+        {
+          "publisher": "IITJobs",
+          "apply_link": "https://www.iitjobs.com/job/java-backend-developer-saint-louis-mo-usa-innomethods-corporation-62575?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        },
+        {
+          "publisher": "Workday",
+          "apply_link": "https://gen.wd1.myworkdayjobs.com/en-US/careers/job/IND---Tamil-Nadu-Chennai/Sr-Software-Engineer-Java_53765?fbclid=IwAR0PtlQI7FHkWU5AhA2Mpgwg6oatMxbVnwRoE-2zJFx1kGoeG8C1oqQnf_c&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        },
+        {
+          "publisher": "Jobs By Workable",
+          "apply_link": "https://apply.workable.com/talworx/j/1D7512718E?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": true
+        },
+        {
+          "publisher": "Built In",
+          "apply_link": "https://builtin.com/job/java-backend-developer/3957154?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        }
+      ],
+      "job_description": "About BNP Paribas India Solutions:\n\nEstablished in 2005, BNP Paribas India Solutions is a wholly owned subsidiary of BNP Paribas SA, European Union’s leading bank with an international reach. With delivery centers located in Bengaluru, Chennai and Mumbai, we are a 24x7 global delivery center. India Solutions services three business lines: Corporate and Institutional Banking, Investment Solutions and Retail Banking for BNP Paribas across the Group. Driving innovation and growth, we are harnessing the potential of over 10000 employees, to provide support and develop best-in-class solutions.\n\nAbout BNP Paribas Group:\n\nBNP Paribas is the European Union’s leading bank and key player in international banking. It operates in 65 countries and has nearly 185,000 employees, including more than 145,000 in Europe. The Group has key positions in its three main fields of activity: Commercial, Personal Banking & Services for the Group’s commercial & personal banking and several specialised businesses including BNP Paribas Personal Finance and Arval; Investment & Protection Services for savings, investment, and protection solutions; and Corporate & Institutional Banking, focused on corporate and institutional clients. Based on its strong diversified and integrated model, the Group helps all its clients (individuals, community associations, entrepreneurs, SMEs, corporates and institutional clients) to realize their projects through solutions spanning financing, investment, savings and protection insurance. In Europe, BNP Paribas has four domestic markets: Belgium, France, Italy, and Luxembourg. The Group is rolling out its integrated commercial & personal banking model across several Mediterranean countries, Turkey, and Eastern Europe. As a key player in international banking, the Group has leading platforms and business lines in Europe, a strong presence in the Americas as well as a solid and fast-growing business in Asia-Pacific. BNP Paribas has implemented a Corporate Social Responsibility approach in all its activities, enabling it to contribute to the construction of a sustainable future, while ensuring the Group's performance and stability\n\nCommitment to Diversity and Inclusion\n\nAt BNP Paribas, we passionately embrace diversity and are committed to fostering an inclusive workplace where all employees are valued, respected and can bring their authentic selves to work. We prohibit Discrimination and Harassment of any kind and our policies promote equal employment opportunity for all employees and applicants, irrespective of, but not limited to their gender, gender identity, sex, sexual orientation, ethnicity, race, colour, national origin, age, religion, social status, mental or physical disabilities, veteran status etc. As a global Bank, we truly believe that inclusion and diversity of our teams is key to our success in serving our clients and the communities we operate in.\n\nAbout Business line/Function :\n\nBNP Paribas Fortis is one of the largest payment processors in Europe. New and existing IT technologies are being developed and maintained out of Tribe Payments in Brussels following the agile methodology. Our teams work in multi-cultural and empowered squads who deliver new functionalities and enhancements on a frequent basis.\n\nJob Title:\n\nDev Engineer\n\nDate:\n\n1-Nov-25\n\nDepartment:\n\nITG\n\nLocation:\n\nChennai\n\nBusiness Line / Function:\n\nFortis\n\nReports to:\n\n(Direct)\n\nService Manager\n\nGrade:\n\n(if applicable)\n\n(Functional)\n\nNumber of Direct Reports:\n\nDirectorship / Registration:\n\nNA\nPosition Purpose\n\nAs Java Developer with at least 7 years of experience, you’ll be joining a squad being part of the Accounts Cluster or a squad being part of the Cash&Cards cluster in Tribe DailyBanking.\n\nYou design, develop, test and maintain high-value, reusable and reliable applications.\n\nYou identify and correct any sticking points and iron out any bugs.\n\nYou stand guard over code quality, organisation and automation.\n\nYou promote new technologies and good practices.\n\nWorking in an agile mode with daily huddles and frequent production releases, whilst maintaining high quality standards.\n\nResponsibilities\n\nDirect Responsibilities\n\n· Ensure together with the other squad members the implementation of changes requests, maintenance and future improvements.\n• You help to define the development plan and acceptance criteria out of those requirements.\n• You design, build, test and maintain the new & existing features with high performance, reusable, and reliable code.\n• You focus on the best possible performance, quality, and uptime of the application by:\n• Identifying & solving bottlenecks or bugs.\n• Ensuring High Code quality, readability, and structure.\n• Making smart automatization (if relevant).\n• Creating/Updating the technical documentation to ensure service continuity.\n• You embed the agile & the development best practices in your daily job.\n\nContributing Responsibilities\n\nAs developer in a squad:\n\n· You leverage your expertise to refine features in workable activities.\n\n· You share your expertise & improvement ideas to enrich the squad’s backlog.\n\n· You align and follow the priorities defined by the squad.\n\nYou collaborate with your peers to deliver high quality service.\n\nTecnhical skills :\n\n· Java 8 , 17\n\n· Spring , SpringBoot\n\n· RestAPI, XML and JSON\n\n· Maven, Gitlab, Jenkins, Kubernetes\n\n· Junit\n\n· wiremock, spring test, mockito\n\ngood understanding of application lifecycle and importance of testing\n\nTechnical experience\n\n- Java and object-oriented programming with at least 7 years of experience\n\n- Api Development, RESTful APIs;\n\n- Swagger\n\n- JPA\n\n- Junit, Cucumber\n\n- Oracle, PLSQL\n\n- SiteFactory, Spring, Spring MVC (Modal View Controler), Springboot\n\n- Maven, Docker\n\n- Secure coding\n\nTechnical tools mastery\n\n- Gilab, Jenkins, SonarQube, Fortify & NexusIQ\n\n- IntellIij\n\nAgile and Scrum experience\n\nBusiness experience\n\n- You have knowledge of banking and payments products. Knowledge about innovative and international payments is an asset.\n\n- You have experience in process analysis of payments requirements.\nTechnical & Behavioral Competencies\n\no Team player who promotes communication between internal and external stakeholders\n\no Result oriented: adapts to the context and wants to obtain the best possible result considering available means.\n\no Act and analyse proactively.\n\no Pragmatic and problem solver.\n\no Quick self-starter, pro-active attitude, self-motivated.\n\no Ability to work in a dynamic and multi-cultural environment. .\n\no Ability to build working relationships in a complex environment.\n\no Ability to manage stakeholders.\n\no Asking and giving feedback\nSpecific Qualifications (if required)\n\nSkills Referential\n\nBehavioural Skills: (Please select up to 4 skills)\n\nAbility to collaborate / Teamwork\n\nCommunication skills - oral & written\n\nAttention to detail / rigor\n\nCreativity & Innovation / Problem solving\n\nTransversal Skills: (Please select up to 5 skills)\n\nAnalytical Ability\n\nAbility to develop and adapt a process\n\nAbility to understand, explain and support change\n\nAnalytical Ability\n\nChoose an item.\n\nEducation Level:\n\nBachelor Degree or equivalent\n\nExperience Level\n\nAt least 7 years\n\nOther/Specific Qualifications (if required)",
+      "job_is_remote": false,
+      "job_posted_at": "7 days ago",
+      "job_posted_at_timestamp": 1757548800,
+      "job_posted_at_datetime_utc": "2025-09-11T00:00:00.000Z",
+      "job_location": "India",
+      "job_city": null,
+      "job_state": null,
+      "job_country": "IN",
+      "job_latitude": 20.593684,
+      "job_longitude": 78.96288,
+      "job_benefits": null,
+      "job_google_link": "https://www.google.com/search?q=jobs&gl=in&hl=en&udm=8#vhid=vt%3D20/docid%3DyZRzQ5V6iaBh5b02AAAAAA%3D%3D&vssid=jobs-detail-viewer",
+      "job_salary": null,
+      "job_min_salary": null,
+      "job_max_salary": null,
+      "job_salary_period": null,
+      "job_highlights": {},
+      "job_onet_soc": "15113200",
+      "job_onet_job_zone": "4"
+    },
+    {
+      "job_id": "VqhQ9vF7JaxhfMj2AAAAAA==",
+      "job_title": "Marketing Technology Developer (Web & Automation Specialist)",
+      "employer_name": "Zenquest Digital",
+      "employer_logo": null,
+      "employer_website": "https://zenquestdigital.com",
+      "job_publisher": "Shine",
+      "job_employment_type": "Full–time",
+      "job_employment_types": [
+        "FULLTIME"
+      ],
+      "job_apply_link": "https://www.shine.com/jobs/marketing-technology-developer-web-automation-specialist/zenquest-digital/17799767?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "job_apply_is_direct": false,
+      "apply_options": [
+        {
+          "publisher": "Shine",
+          "apply_link": "https://www.shine.com/jobs/marketing-technology-developer-web-automation-specialist/zenquest-digital/17799767?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        },
+        {
+          "publisher": "Glassdoor",
+          "apply_link": "https://www.glassdoor.co.in/job-listing/marketing-technology-developer-web-and-automation-specialist-zenquest-digital-JV_KO0,60_KE61,77.htm?jl=1009856411453&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": true
+        },
+        {
+          "publisher": "Qureos",
+          "apply_link": "https://app.qureos.com/jobs/marketing-technology-developer-web-automation-specialist-1756383454859?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        }
+      ],
+      "job_description": "As a Marketing Technology Developer at Zenquest Digital, you will be working hands-on with WordPress websites, CRM platforms, and marketing automation tools. Your main responsibilities will include building and maintaining client websites, online funnels, and automations across various platforms like GoHighLevel, HubSpot, Zoho, and Unbounce. If you enjoy combining web development with marketing tech and aspire to grow into a Tech Lead role, this opportunity is perfect for you.\n\nKey Responsibilities:\n- Build & maintain responsive websites and landing pages in WordPress (Elementor, WooCommerce, etc.), Unbounce, GoHighLevel, Hubspot\n- Create and optimize funnels, automations, and workflows inside GoHighLevel/Hubspot/Other CRMs\n- Set up email campaigns, SMS workflows, and CRM pipelines\n- Integrate web pages with CRMs and MarTech platforms (HubSpot, Zoho, Keap, Ontraport, Unbounce)\n- Implement integrations via Zapier, Make, Stripe, Shopify, Google Analytics, Data Studio\n- Troubleshoot platform issues and ensure smooth end-to-end functioning\n- Collaborate with designers/marketers to convert mockups into live pages and campaigns\n- Conduct quality assurance checks on websites, funnels, and automations\n\nSkills & Qualifications:\n- 2-4 years of experience in web development or marketing technology roles\n- Strong knowledge of WordPress & Elementor (customization, plugins, performance)\n- Hands-on experience with GoHighLevel funnels & automations\n- Familiarity with HubSpot, Zoho CRM, Unbounce, Keap, or similar CRM/automation platforms\n- Basic coding skills: HTML, CSS, JavaScript, PHP (for edits & troubleshooting)\n- Experience with Zapier/Make, Stripe, Shopify, Google Analytics, Google Data Studio\n- Good communication skills in English (written & spoken)\n- Strong logical thinking & troubleshooting skills\n\nWhy Join Us\n- Exposure to multiple industries & cutting-edge MarTech platforms\n- Fast-paced, learning-driven environment with ownership opportunities\n- Work directly on projects that impact client growth and results\n\nNote: This is a full-time position with in-person work location.,",
+      "job_is_remote": false,
+      "job_posted_at": "4 days ago",
+      "job_posted_at_timestamp": 1757808000,
+      "job_posted_at_datetime_utc": "2025-09-14T00:00:00.000Z",
+      "job_location": "India",
+      "job_city": null,
+      "job_state": null,
+      "job_country": "IN",
+      "job_latitude": 20.593684,
+      "job_longitude": 78.96288,
+      "job_benefits": null,
+      "job_google_link": "https://www.google.com/search?q=jobs&gl=in&hl=en&udm=8#vhid=vt%3D20/docid%3DVqhQ9vF7JaxhfMj2AAAAAA%3D%3D&vssid=jobs-detail-viewer",
+      "job_salary": null,
+      "job_min_salary": null,
+      "job_max_salary": null,
+      "job_salary_period": null,
+      "job_highlights": {},
+      "job_onet_soc": "13116100",
+      "job_onet_job_zone": "4"
+    },
+    {
+      "job_id": "9ZHbjqtDMeWQkBY8AAAAAA==",
+      "job_title": "Java + Angular developer",
+      "employer_name": "Latent",
+      "employer_logo": null,
+      "employer_website": "https://latentai.com",
+      "job_publisher": "Indeed",
+      "job_employment_type": "Full–time",
+      "job_employment_types": [
+        "FULLTIME"
+      ],
+      "job_apply_link": "https://in.indeed.com/viewjob?jk=3f5db7d18f8993e8&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "job_apply_is_direct": false,
+      "apply_options": [
+        {
+          "publisher": "Indeed",
+          "apply_link": "https://in.indeed.com/viewjob?jk=3f5db7d18f8993e8&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        },
+        {
+          "publisher": "BeBee",
+          "apply_link": "https://in.bebee.com/job/71a4f63e1b9a7f459b446cb0793d0ff8?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        },
+        {
+          "publisher": "Glassdoor",
+          "apply_link": "https://www.glassdoor.co.in/job-listing/java-angular-developer-latent-JV_KO0,22_KE23,29.htm?jl=1009873037680&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": true
+        },
+        {
+          "publisher": "MYTAT",
+          "apply_link": "https://mytat.co/job-listing/java-angular-developer-400608?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        }
+      ],
+      "job_description": "Job Title: Java + Angular Developer\n\nExperience Required: 5+ years\n\nLocation: Remote\n\nEmployment Type: Full-time\n\nKey Responsibilities\n\nDesign, develop, and maintain scalable web applications using Java (Spring Boot) and Angular.\n\nCollaborate with cross-functional teams (design, product, QA) to translate requirements into technical solutions.\n\nWrite clean, maintainable, and efficient code with proper unit testing.\n\nOptimize application performance and troubleshoot issues across frontend and backend.\n\nIntegrate RESTful APIs and ensure smooth data exchange between client and server.\n\nParticipate in code reviews, provide constructive feedback, and maintain coding standards.\n\nStay updated with the latest industry trends, frameworks, and best practices.\n\nRequired Skills & Qualifications\n\nStrong hands-on experience (5+ years) in Java, Spring Boot, Hibernate/JPA.\n\nProficiency in Angular (v8 and above preferred), TypeScript, HTML5, CSS3, and JavaScript/ES6+.\n\nSolid understanding of RESTful APIs, Microservices, and JSON.\n\nGood knowledge of RDBMS (MySQL, PostgreSQL, or Oracle) and query optimization.\n\nFamiliarity with Git, Maven/Gradle, and CI/CD pipelines.\n\nExperience with unit testing frameworks (JUnit, Jasmine, Karma).\n\nStrong problem-solving, debugging, and analytical skills.\n\nAbility to work independently and in a collaborative Agile/Scrum team environment.\n\nGood to Have\n\nExposure to cloud platforms (AWS/Azure/GCP).\n\nKnowledge of Docker/Kubernetes.\n\nExperience in performance tuning and application security best practices.\n\nEducation\n\nBachelor’s or Master’s degree in Computer Science, Information Technology, or related field.\n\nJob Type: Full-time\n\nPay: ₹500,000.00 - ₹600,000.00 per year\n\nBenefits:\n• Flexible schedule\n• Work from home\n\nWork Location: Remote",
+      "job_is_remote": true,
+      "job_posted_at": "7 days ago",
+      "job_posted_at_timestamp": 1757548800,
+      "job_posted_at_datetime_utc": "2025-09-11T00:00:00.000Z",
+      "job_location": "India",
+      "job_city": null,
+      "job_state": null,
+      "job_country": "IN",
+      "job_latitude": 20.593684,
+      "job_longitude": 78.96288,
+      "job_benefits": null,
+      "job_google_link": "https://www.google.com/search?q=jobs&gl=in&hl=en&udm=8#vhid=vt%3D20/docid%3D9ZHbjqtDMeWQkBY8AAAAAA%3D%3D&vssid=jobs-detail-viewer",
+      "job_min_salary": null,
+      "job_max_salary": null,
+      "job_salary_period": "YEAR",
+      "job_highlights": {},
+      "job_onet_soc": "15113400",
+      "job_onet_job_zone": "3"
+    },
+    {
+      "job_id": "RbPrsi-sSzhS68uXAAAAAA==",
+      "job_title": "Smalltalk Developer",
+      "employer_name": "US MNC",
+      "employer_logo": null,
+      "employer_website": null,
+      "job_publisher": "LinkedIn",
+      "job_employment_type": "Full–time",
+      "job_employment_types": [
+        "FULLTIME"
+      ],
+      "job_apply_link": "https://in.linkedin.com/jobs/view/smalltalk-developer-at-us-mnc-4300875232?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "job_apply_is_direct": false,
+      "apply_options": [
+        {
+          "publisher": "LinkedIn",
+          "apply_link": "https://in.linkedin.com/jobs/view/smalltalk-developer-at-us-mnc-4300875232?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        },
+        {
+          "publisher": "Shine",
+          "apply_link": "https://www.shine.com/jobs/smalltalk-developer/us-mnc/17807616?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        },
+        {
+          "publisher": "BeBee",
+          "apply_link": "https://in.bebee.com/job/0621e5fbd681a6f0aeae46c1c4fd6654?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        }
+      ],
+      "job_description": "Position Key Responsibilities:\n\n∙Lead and manage a team of software engineers in the Smalltalk space, ensuring the su\n\nccessful delivery of projects within agreed timelines and quality standards.\n\n∙Participates on technology project teams; effectively interacts with business partners,\n\nBusiness Analysts, Architects, Quality Assurance Specialists and management; takes\n\n∙ownership and accountability for own work, as well as the work of the team.\n\n∙Adheres to project management methodology and standards applicable to assigned wo\n\nrk\n\n∙Contributes towards defining timelines and project plans; analyzes and estimates feasi\n\nbility, effort, time and compatibility.\n\n∙Generates more complex technical assessments, develops solution alternatives, evalua\n\ntes options, and provides recommendations considering efficiency and cost effectiven\n\ness to\n\n∙Achieve complete solution development, problem resolution and/or system maintenan\n\nce that meets the business need.\n\n∙Complies with architectural and coding standards; considers re-\n\nuse of existing software structures along with future maintainability of solutions.\n\n∙Develops and executes test scenarios and test cases for unit and integration testing.\n\n∙Delivers quality solutions for both new and existing applications of varying complexit\n\ny and scope while adhering to software development best practices; solutions are deliv\n\nered in a\n\n∙Timely manner, meeting or exceeding established SLA’s or timelines.\n\n∙Collaborates effectively with third-party vendors as required.\n\n∙Participates in on-\n\ncall production support of applications/platforms in multiple environments; escalates i\n\nssues following procedures to minimize system downtime.\n\n∙Ensures full compliance with all IT policies, procedures and controls.\n\n∙Mentors developers within the department and within company approved consulting tea\n\nms.\n\nQualifications\n\nRequired Work Experience and Skills:\n\n∙Minimum of 3 to 8 years of application development experience\n\n∙Required skills: Smalltalk, HTML, XML\n\n∙Additional desired skills: S-\n\nunit, Java, Websphere, RAD, MQSeries, Oracle, DB2, SQL\n\n∙Design, implement, and maintain object-oriented software systems using Smalltalk.\n\n∙Develop scalable, modular, and maintainable code based on OOP principles.\n\n∙Integrate Smalltalk-based systems with components and services written in Java,\n\nPython, and C++.\n\n∙Modernize legacy Smalltalk applications and refactor for better performance and\n\nmaintainability.\n\n∙Ability to work independently with little or no oversight.\n\n∙Strong technical knowledge and systems experience with a demonstrated ability to wo\n\nrk in large and extremely complex\n\n∙Systems on multiple platforms\n\n∙Experience working with business partners to identify and implement system changes\n\nthat are based on extremely complex business requirements and processes\n\n∙Demonstrated technical leadership; innovative and creative.\n\n∙Strong analytical and problem-\n\nsolving skills with the capability to drive tasks from start to completion.\n\n∙Strong debugging techniques; proven ability to troubleshoot and debug problems.\n\n∙Strong testing skills and focus on achieving quality deliverables.\n\n∙Ability to effectively multi-task and prioritize workload.\n\n∙Excellent communication and collaboration skills.\n\n∙Confident and competent working in a fast-paced environment.\n\n∙Ability to work off-hours when needed.\n\n∙Ability to work effectively in a matrix management environment.\n\n∙Experience with various industry standard software development methodologies and b\n\nest practices.\n\n∙Fundamental understanding of ITIL and ITSM.\n\nEducation:\n\n- Bachelor’s degree in computer science, Information Technology, or an equivalent required.\n\n- Insurance background a plus",
+      "job_is_remote": false,
+      "job_posted_at": "3 days ago",
+      "job_posted_at_timestamp": 1757894400,
+      "job_posted_at_datetime_utc": "2025-09-15T00:00:00.000Z",
+      "job_location": "India",
+      "job_city": null,
+      "job_state": null,
+      "job_country": "IN",
+      "job_latitude": 20.593684,
+      "job_longitude": 78.96288,
+      "job_benefits": null,
+      "job_google_link": "https://www.google.com/search?q=jobs&gl=in&hl=en&udm=8#vhid=vt%3D20/docid%3DRbPrsi-sSzhS68uXAAAAAA%3D%3D&vssid=jobs-detail-viewer",
+      "job_salary": null,
+      "job_min_salary": null,
+      "job_max_salary": null,
+      "job_salary_period": null,
+      "job_highlights": {},
+      "job_onet_soc": "15113200",
+      "job_onet_job_zone": "4"
+    },
+    {
+      "job_id": "PQPKsqpMNV034K0gAAAAAA==",
+      "job_title": "Senior React.js Developer (Remote)",
+      "employer_name": "Technorex Infoways",
+      "employer_logo": null,
+      "employer_website": "https://technorexinfoways.com",
+      "job_publisher": "Indeed",
+      "job_employment_type": "Full–time",
+      "job_employment_types": [
+        "FULLTIME"
+      ],
+      "job_apply_link": "https://in.indeed.com/viewjob?jk=eae498ffacb60cd8&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "job_apply_is_direct": false,
+      "apply_options": [
+        {
+          "publisher": "Indeed",
+          "apply_link": "https://in.indeed.com/viewjob?jk=eae498ffacb60cd8&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        },
+        {
+          "publisher": "Cutshort",
+          "apply_link": "https://cutshort.io/job/Senior-React-js-Developer-India-Srijan-Technologies-ZnIigmcH?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": true
+        },
+        {
+          "publisher": "Glassdoor",
+          "apply_link": "https://www.glassdoor.co.in/job-listing/senior-react-js-developer-remote-technorex-infoways-JV_IC2935226_KO0,32_KE33,51.htm?jl=1009262848794&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        },
+        {
+          "publisher": "Climatebase",
+          "apply_link": "https://climatebase.org/job/64097954/senior-flutter-developer?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        },
+        {
+          "publisher": "Built In",
+          "apply_link": "https://builtin.com/job/senior-reactjs-developer-remote-contractual/6200376?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        },
+        {
+          "publisher": "SimplyHired",
+          "apply_link": "https://www.simplyhired.co.in/job/kMb-Tk1n2tvTvBdIyju89hBmkcdqi-fufbOBHa9XtXaKGWzYsQ5g1g?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        },
+        {
+          "publisher": "Jooble",
+          "apply_link": "https://in.jooble.org/jdp/542247014382352139?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        },
+        {
+          "publisher": "LinkedIn",
+          "apply_link": "https://in.linkedin.com/jobs/view/senior-flutter-developer-at-zuchiz-4195684794?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        }
+      ],
+      "job_description": "Become a part of our big family to inspire and get inspired by professionals. Our goal is to connect you with supportive resources to supplement your skills in order to attain your dream career. We’re enthusiastic about taking your experience to the subsequent stage. Our career framework is designed to help our software engineers stay on top of expectations and what they have to do to advance their careers in Technorex Infoways.\n\nLet’s together work on better ideas and concepts in order to bring out the final outcome with a spark. Here, professionalism doesn’t lie in your dress code, rather it lies in the quality of work you deliver. So, let’s just team up and redefine the art of communication!\n\nIf you consider yourself resourceful, ingenious and bitten by the imagination bug,\n\nWe want you to come to grow with us! Then shoot off your CV to: hr@technorexinfoways.com\n\nSenior React.js Developer (Remote)\n• Proficiency in React.js, JavaScript, and Redux\n• Experience utilizing Google Firebase and various analytics tools\n• Proficient in Git and other code versioning tools\n• In-depth understanding of React JS and its fundamental principles\n• Knowledge of React state management like Redux.\n• Proficiency in composing functional requirement documents and guides\n• Familiarity with authorization mechanisms like JSON Web Token\n• Collaboration with back-end developers and web designers to enhance usability\n• Profound comprehension of JavaScript, CSS, HTML, ensuring compatibility across browsers\n• Familiarity with popular React JS workflows such as Flux or Redux\n• Strong written, verbal communication, and problem-solving abilities\n\nExperience: 3+ years (Please apply only if you have 3 or more years experience)\nQualification: B.Tech / BCA / BE / BscIT / Any Graduation",
+      "job_is_remote": true,
+      "job_posted_at": null,
+      "job_posted_at_timestamp": null,
+      "job_posted_at_datetime_utc": null,
+      "job_location": "India",
+      "job_city": null,
+      "job_state": null,
+      "job_country": "IN",
+      "job_latitude": 20.593684,
+      "job_longitude": 78.96288,
+      "job_benefits": null,
+      "job_google_link": "https://www.google.com/search?q=jobs&gl=in&hl=en&udm=8#vhid=vt%3D20/docid%3DPQPKsqpMNV034K0gAAAAAA%3D%3D&vssid=jobs-detail-viewer",
+      "job_salary": null,
+      "job_min_salary": null,
+      "job_max_salary": null,
+      "job_salary_period": null,
+      "job_highlights": {},
+      "job_onet_soc": "15113400",
+      "job_onet_job_zone": "3"
+    }
+  ]
+}
