@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     role: { type: DataTypes.ENUM("candidate", "admin", "recruiter"), defaultValue: "candidate" },
     isVerified: { type: DataTypes.BOOLEAN, defaultValue: false },
     isMobileVerified: { type: DataTypes.BOOLEAN, defaultValue: false },
+    status: { type: DataTypes.ENUM("active", "inactive"), defaultValue: "active" },
     otp: DataTypes.STRING,
     otpExpires: DataTypes.DATE,
   });
