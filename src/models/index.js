@@ -31,6 +31,9 @@ db.ApplicationFeedback = require("./ApplicationFeedback")(sequelize, DataTypes);
 db.Certification = require("./Certification")(sequelize, DataTypes);
 db.Notification = require("./Notification")(sequelize, DataTypes);
 
+// Admin
+db.Admin = require("./Admin")(sequelize, DataTypes);
+
 // ======================
 // Define Associations
 // ======================
@@ -82,6 +85,11 @@ db.ChatMessage.belongsTo(db.User, { foreignKey: "userId" });
 // ChatMessage ↔ FileAttachment (1:M)
 db.ChatMessage.hasMany(db.FileAttachment, { foreignKey: "chatMessageId" });
 db.FileAttachment.belongsTo(db.ChatMessage, { foreignKey: "chatMessageId" });
+
+
+// Admin <-> Admin (1:M)
+db.Admin.hasMany(db.Admin, { foreignKey: "createdBy", as: "createdAdmins" });
+db.Admin.belongsTo(db.Admin, { foreignKey: "createdBy", as: "creator" });
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
