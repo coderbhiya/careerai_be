@@ -845,8 +845,8 @@ module.exports = {
       
       if (search) {
         where[Op.or] = [
-          { title: { [Op.iLike]: `%${search}%` } },
-          { company: { [Op.iLike]: `%${search}%` } }
+          { title: { [Op.like]: `%${search}%` } },
+          { company: { [Op.like]: `%${search}%` } }
         ];
       }
       
