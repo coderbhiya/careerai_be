@@ -1,5 +1,8 @@
 const db = require("../models");
-const { Op } = require("sequelize");
+const { Op, json } = require("sequelize");
+
+const Skill = db.Skill;
+const UserSkill = db.UserSkill;
 
 module.exports = {
   /**
@@ -42,33 +45,36 @@ module.exports = {
    */
   getJobs: async (req, res) => {
     try {
+      const userId = req.user.id;
+
+      // Get user skills
+      const userSkills = await UserSkill.findAll({
+        where: { userId },
+        include: [Skill],
+      });
+
+      if (!userSkills.length) {
+        return res.status(400).json({ success: false, message: "You have no skills. Please add some skills to your profile." });
+      }
+
       const page = parseInt(req.query.page) || 1;
-      const limit = parseInt(req.query.limit) || 10;
+      const limit = parseInt(req.query.limit) || 9;
       const offset = (page - 1) * limit;
-      const search = req.query.search || "";
+      const search = req.query.search || skillNames.join(" ");
       const location = req.query.location || "";
       const employmentType = req.query.employmentType || "";
 
       // Build filter conditions
       const whereConditions = {};
-      
+
       if (search) {
-        whereConditions[Op.or] = [
-          { title: { [Op.like]: `%${search}%` } },
-          { company: { [Op.like]: `%${search}%` } },
-          { description: { [Op.like]: `%${search}%` } }
-        ];
+        whereConditions[Op.or] = [{ title: { [Op.like]: `%${search}%` } }, { company: { [Op.like]: `%${search}%` } }, { description: { [Op.like]: `%${search}%` } }];
       }
-      
+
       if (location) {
-        whereConditions[Op.or] = [
-          { location: { [Op.like]: `%${location}%` } },
-          { city: { [Op.like]: `%${location}%` } },
-          { state: { [Op.like]: `%${location}%` } },
-          { jobCountry: { [Op.like]: `%${location}%` } }
-        ];
+        whereConditions[Op.or] = [{ location: { [Op.like]: `%${location}%` } }, { city: { [Op.like]: `%${location}%` } }, { state: { [Op.like]: `%${location}%` } }, { jobCountry: { [Op.like]: `%${location}%` } }];
       }
-      
+
       if (employmentType) {
         whereConditions.employmentType = { [Op.like]: `%${employmentType}%` };
       }
@@ -78,29 +84,30 @@ module.exports = {
         where: whereConditions,
         limit,
         offset,
-        order: [["id", "DESC"]]
+        order: [["id", "DESC"]],
       });
 
       // Get unique locations and employment types for filters
       const locations = await db.Job.findAll({
-        attributes: ['location', 'city', 'state', 'jobCountry'],
-        group: ['location', 'city', 'state', 'jobCountry']
-      });
-      
-      const employmentTypes = await db.Job.findAll({
-        attributes: ['employmentType'],
-        group: ['employmentType']
+        attributes: ["location", "city", "state", "jobCountry"],
+        group: ["location", "city", "state", "jobCountry"],
       });
 
-      const uniqueLocations = [...new Set(
-        locations.map(item => [item.location, item.city, item.state, item.jobCountry])
-          .flat()
-          .filter(Boolean)
-      )];
-      
-      const uniqueEmploymentTypes = [...new Set(
-        employmentTypes.map(item => item.employmentType).filter(Boolean)
-      )];
+      const employmentTypes = await db.Job.findAll({
+        attributes: ["employmentType"],
+        group: ["employmentType"],
+      });
+
+      const uniqueLocations = [
+        ...new Set(
+          locations
+            .map((item) => [item.location, item.city, item.state, item.jobCountry])
+            .flat()
+            .filter(Boolean)
+        ),
+      ];
+
+      const uniqueEmploymentTypes = [...new Set(employmentTypes.map((item) => item.employmentType).filter(Boolean))];
 
       res.json({
         success: true,
@@ -109,12 +116,12 @@ module.exports = {
           total: count,
           page,
           limit,
-          totalPages: Math.ceil(count / limit)
+          totalPages: Math.ceil(count / limit),
         },
         filters: {
           locations: uniqueLocations,
-          employmentTypes: uniqueEmploymentTypes
-        }
+          employmentTypes: uniqueEmploymentTypes,
+        },
       });
     } catch (err) {
       console.error(err);
@@ -147,15 +154,15 @@ module.exports = {
     try {
       const { id } = req.params;
       const job = await db.Job.findByPk(id);
-      
+
       if (!job) {
         return res.status(404).json({ success: false, message: "Job not found" });
       }
-      
+
       res.json({ success: true, job });
     } catch (err) {
       console.error(err);
       res.status(500).json({ success: false, message: "Server error" });
     }
-  }
+  },
 };
