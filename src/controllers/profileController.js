@@ -377,7 +377,7 @@ module.exports = {
       const { id } = req.params;
 
       const userSkill = await UserSkill.findOne({
-        where: { id, userId }
+        where: { skillId: id, userId }
       });
 
       if (!userSkill) {
