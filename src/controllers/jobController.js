@@ -47,25 +47,32 @@ module.exports = {
     try {
       const userId = req.user.id;
 
-      // Get user skills
-      const userSkills = await UserSkill.findAll({
-        where: { userId },
-        include: [Skill],
-      });
-
-      if (!userSkills.length) {
-        return res.status(400).json({ success: false, message: "You have no skills. Please add some skills to your profile." });
-      }
-
       const page = parseInt(req.query.page) || 1;
       const limit = parseInt(req.query.limit) || 9;
       const offset = (page - 1) * limit;
-      const search = req.query.search || skillNames.join(" ");
+      const search = req.query.search || "";
       const location = req.query.location || "";
       const employmentType = req.query.employmentType || "";
 
       // Build filter conditions
       const whereConditions = {};
+
+      if (search == "") {
+        // Get user skills
+        const userSkills = await UserSkill.findAll({
+          where: { userId },
+          include: [Skill],
+        });
+
+        if (!userSkills.length) {
+          return res.status(400).json({ success: false, message: "You have no skills. Please add some skills to your profile." });
+        }
+        const skillNames = userSkills.map((userSkill) => userSkill.Skill.name);
+        // Filter jobs by required skills
+        if (skillNames.length > 0) {
+          whereConditions[Op.or] = skillNames.map((skillName) => [{ title: { [Op.like]: `%${skillName}%` } }, { description: { [Op.like]: `%${skillName}%` } }]);
+        }
+      }
 
       if (search) {
         whereConditions[Op.or] = [{ title: { [Op.like]: `%${search}%` } }, { company: { [Op.like]: `%${search}%` } }, { description: { [Op.like]: `%${search}%` } }];
