@@ -198,7 +198,8 @@ module.exports = {
         skillId: us.Skill.id,
         name: us.Skill.name,
         category: us.Skill.category,
-        proficiency: us.proficiency
+        proficiency: us.proficiency,
+        skillScore: us.skillScore
       }));
 
       res.json({ success: true, skills });
