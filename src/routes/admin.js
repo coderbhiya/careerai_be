@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const adminController = require("../controllers/adminController");
 const adminMiddleware = require("../middleware/adminAuth");
+const notificationController = require("../controllers/notificationController");
 
 // Public routes
 router.post("/login", adminController.login);
@@ -42,5 +43,10 @@ router.get("/reports/users", adminController.generateUserReport);
 // Admin management (requires super admin or admin role)
 router.get("/admins", adminController.getAllAdmins);
 router.put("/admins/:id/toggle-status", adminController.toggleAdminStatus);
+
+// Notifications management (Admin)
+router.get("/notifications", notificationController.getAllNotifications);
+router.post("/notifications", notificationController.createNotification);
+router.delete("/notifications/:id", notificationController.deleteNotification);
 
 module.exports = router;
