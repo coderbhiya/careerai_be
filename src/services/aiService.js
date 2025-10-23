@@ -3,6 +3,10 @@ const OPENAI_MODEL = process.env.OPENAI_MODEL;
 const fs = require("fs");
 const path = require("path");
 
+// Resolve the backend root (../../ from this services directory)
+const BACKEND_ROOT = path.resolve(__dirname, "..", "..");
+
+
 const client = new OpenAi({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -15,15 +19,17 @@ const chatWithAI = async (userMessage, files = []) => {
       for (const f of files) {
         console.log(f);
 
-        const filePath = path.resolve(__dirname, "../../", f.path);
-        // check file exist in path
-        if (!fs.existsSync(filePath)) {
-          console.warn(`File not found: ${filePath}`);
+        // Normalize provided file path to an absolute path within backend
+        const normalizedPath = path.resolve(BACKEND_ROOT, f.path.replace(/^\//, ""));
+
+        // Check file exists at normalized path
+        if (!fs.existsSync(normalizedPath)) {
+          console.warn(`File not found: ${normalizedPath} (source: ${f.path})`);
           continue;
         }
 
         const uploaded = await client.files.create({
-          file: fs.createReadStream(path.join(__dirname, "../../" + f.path)),
+          file: fs.createReadStream(normalizedPath),
           purpose: "assistants",
         });
         content.push({
