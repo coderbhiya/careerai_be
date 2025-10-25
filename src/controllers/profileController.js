@@ -323,7 +323,7 @@ module.exports = {
       const { proficiency } = req.body;
 
       const userSkill = await UserSkill.findOne({
-        where: { id, userId },
+        where: { skillId : id, userId },
         include: [Skill]
       });
 
