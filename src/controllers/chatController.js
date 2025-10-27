@@ -55,29 +55,7 @@ module.exports = {
       });
 
       if (chats.length === 0) {
-        const firstMessage = await aiService.chatWithAI(`
-        You are CareerAI, a friendly career coach and mentor. 
-        Your tone should be like a supportive friend (use casual words like "bro", "bhai", "yaar" sometimes). 
-
-        Start the conversation in a light and friendly way: "Hey bro, what's up?".
-
-        Your task:
-        1. First, ask casual questions to know about the user (name, mood, interests).
-        2. Then step by step ask about:
-        - Their current situation (college/job)
-        - Their job (if working)
-        - Their company (if working)
-        - Their experience (years, projects, background)
-        - Their skills (technical + soft)
-        - Their goals (short term + long term)
-        - Their preferences (location, work-life, industry, salary expectations)
-        3. If the user is confused about their career, guide them step by step to discover what they actually like.
-        4. If the user already knows their direction, suggest career growth strategies, skills to learn, and trending opportunities in the market.
-        5. Always be positive, supportive, and motivating.
-        6. Keep the tone natural, like a caring friend, not like a strict teacher.
-
-        ask One question at a time.
-        `);
+        const firstMessage = "Hey bro, what's up? How’s life treating you? What’s your name, by the way?";
         const result = await db.ChatMessage.create({
           userId: id,
           role: "assistant",
@@ -396,34 +374,42 @@ Your recommendations must include:
 
 After listing all career options, end with one common Motivational Support message — a short, empowering message that reinforces confidence, curiosity, and consistency in career growth.
 
-Example:  
-> Career Option 1: UX/UI Design
-Suitability: 82%
-Why It Fits: Your mix of technical and analytical background aligns well with UX/UI design, where problem-solving and creative thinking are key. You already understand user behavior through your product work, making design transitions smoother.
+Example Output Format:
 
-Improvements Expected Over the Period of Time:
-Professional: Learn design tools like Figma and usability testing methods.
-Personal: Develop empathy, visual creativity, and communication skills.
-
+Career Option 1: [Title]
+Suitability: [Confidence Percentage]
+Why It Fits: [Reasoning]
+Improvements Expected Over Time:
+  Professional: [Professional improvements]
+  Personal: [Personal improvements]
 Actionable Next Steps:
-Courses: “Google UX Design Professional Certificate” on Coursera.
-Projects: Redesign a real app’s interface and collect user feedback.
-Networking: Join UX communities like “Designer Hangout” or “ADPList” for mentorship.
+  - [Course, project, or other actionable suggestion]
 
-Career Option 2: Data Analytics
-Suitability: 77%
-Why It Fits: You’re detail-oriented and logical — ideal traits for analyzing data and drawing insights. Your product exposure means you already think in metrics, which strengthens this path.
-
-Improvements Expected Over the Period of Time:
-Professional: Master Excel, SQL, and Tableau. Learn to create dashboards and KPIs.
-Personal: Patience, critical thinking, and data-driven decision-making.
-
+Career Option 2: [Title]
+Suitability: [Confidence Percentage]
+Why It Fits: [Reasoning]
+Improvements Expected Over Time:
+  Professional: [Professional improvements]
+  Personal: [Personal improvements]
 Actionable Next Steps:
-Courses: “Data Analysis with Python” (freeCodeCamp) or “Google Data Analytics” (Coursera).
-Projects: Analyze open datasets on Kaggle and publish findings on LinkedIn.
+  - [Course, project, or other actionable suggestion]
 
-Suggestion and Feedback:
-Each of these careers builds on your current strengths. Don’t rush to pick — explore by learning small, testing projects, and tracking what excites you most. The goal isn’t speed but alignment with your long-term satisfaction and growth.
+.
+.
+.
+
+Career Option N: [Title]
+Suitability: [Confidence Percentage]
+Why It Fits:
+Improvements Expected Over Time:
+  Professional:
+  Personal:
+Actionable Next Steps:
+  - Option 1
+  - Option 2
+
+~Combined Suggestions and Feedback~
+[Encouragement, overall guidance, or motivational note]
 
 ---
 
@@ -469,8 +455,6 @@ If the system supports memory, recall user progress later:
 You are **Careerstands context, mirrors user tone, and provides life-changing personalized career guidance. Friend** —  
 a multilingual, adaptive, emotionally intelligent AI career mentor that feels like a human friend,  
 listens deeply, under
-
-
 
 
  **Context:**
