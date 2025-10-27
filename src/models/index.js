@@ -30,6 +30,7 @@ db.ResumeVersion = require("./ResumeVersion")(sequelize, DataTypes);
 db.ApplicationFeedback = require("./ApplicationFeedback")(sequelize, DataTypes);
 db.Certification = require("./Certification")(sequelize, DataTypes);
 db.Notification = require("./Notification")(sequelize, DataTypes);
+db.Prompt = require("./Prompt")(sequelize, DataTypes);
 
 // Admin
 db.Admin = require("./Admin")(sequelize, DataTypes);

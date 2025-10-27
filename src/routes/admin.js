@@ -3,6 +3,7 @@ const router = express.Router();
 const adminController = require("../controllers/adminController");
 const adminMiddleware = require("../middleware/adminAuth");
 const notificationController = require("../controllers/notificationController");
+const promptController = require("../controllers/promptController");
 
 // Public routes
 router.post("/login", adminController.login);
@@ -48,5 +49,14 @@ router.put("/admins/:id/toggle-status", adminController.toggleAdminStatus);
 router.get("/notifications", notificationController.getAllNotifications);
 router.post("/notifications", notificationController.createNotification);
 router.delete("/notifications/:id", notificationController.deleteNotification);
+
+// Prompt management
+router.get("/prompts", promptController.listPrompts);
+router.get("/prompts/active", promptController.getActivePrompt);
+router.get("/prompts/:id", promptController.getPrompt);
+router.post("/prompts", promptController.createPrompt);
+router.put("/prompts/:id", promptController.updatePrompt);
+router.delete("/prompts/:id", promptController.deletePrompt);
+router.put("/prompts/:id/activate", promptController.activatePrompt);
 
 module.exports = router;
