@@ -109,7 +109,7 @@ module.exports = {
    *         description: Server error
    */
   sendReply: async (req, res) => {
-    const transaction = await db.sequelize.transaction();
+    // const transaction = await db.sequelize.transaction();
     try {
       const { id } = req.user;
       const userId = id;
@@ -134,7 +134,7 @@ module.exports = {
           message,
           hasAttachments: fileAttachments && fileAttachments.length > 0,
         },
-        { transaction }
+        // { transaction }
       );
 
       // Create file attachments if any
@@ -243,13 +243,13 @@ ${sanitize(fileContext)}
           role: "assistant",
           message: reply,
         },
-        { transaction }
+        // { transaction }
       );
-      await transaction.commit();
+      // await transaction.commit();
       res.json({ success: true, reply });
     } catch (err) {
       console.error(err);
-      transaction.rollback();
+      // transaction.rollback();
       res.status(500).json({ success: false, message: "Server error" });
     }
   },
