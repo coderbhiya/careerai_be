@@ -46,7 +46,7 @@ const chatWithAI = async (userMessage, files = []) => {
 
     const response = await client.responses.create({
       model: `${process.env.OPENAI_MODEL}`,
-      temperature: 0.8,
+      // temperature: 0.8,
       input: [
         {
           role: "user",
