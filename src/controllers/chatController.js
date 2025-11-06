@@ -55,7 +55,7 @@ module.exports = {
       });
 
       if (chats.length === 0) {
-        const firstMessage = "Hey bro, what's up?";
+        const firstMessage = "Hey, what's up?";
         const result = await db.ChatMessage.create({
           userId: id,
           role: "assistant",
