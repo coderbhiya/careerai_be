@@ -215,7 +215,7 @@ module.exports = {
       }
 
       const prompt = `
-${dbPrompt.prompt}
+${dbPrompt.content}
 
 
 
