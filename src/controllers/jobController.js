@@ -65,7 +65,7 @@ module.exports = {
         });
 
         if (!userSkills.length) {
-          return res.status(400).json({ success: false, message: "You have no skills. Please add some skills to your profile." });
+          return res.status(400).json({ success: false, message: "You don’t have any skills listed yet. Please add some to your profile." });
         }
         const skillNames = userSkills.map((userSkill) => userSkill.Skill.name);
         // Filter jobs by required skills
