@@ -148,7 +148,9 @@ module.exports = {
           fileSize: f.fileSize,
           mimeType: f.mimeType,
         }));
-        await db.FileAttachment.bulkCreate(attachmentsData, { transaction });
+        await db.FileAttachment.bulkCreate(attachmentsData,
+          //  { transaction }
+          );
       }
 
       // Fetch recent chat history (increased limit for better context)
