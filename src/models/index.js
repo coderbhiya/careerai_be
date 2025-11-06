@@ -31,6 +31,9 @@ db.ApplicationFeedback = require("./ApplicationFeedback")(sequelize, DataTypes);
 db.Certification = require("./Certification")(sequelize, DataTypes);
 db.Notification = require("./Notification")(sequelize, DataTypes);
 db.Prompt = require("./Prompt")(sequelize, DataTypes);
+db.Review = require("./Review")(sequelize, DataTypes);
+db.ReviewQuestion = require("./ReviewQuestion")(sequelize, DataTypes);
+db.ReviewAnswer = require("./ReviewAnswer")(sequelize, DataTypes);
 
 // Admin
 db.Admin = require("./Admin")(sequelize, DataTypes);
@@ -86,6 +89,18 @@ db.ChatMessage.belongsTo(db.User, { foreignKey: "userId" });
 // ChatMessage ↔ FileAttachment (1:M)
 db.ChatMessage.hasMany(db.FileAttachment, { foreignKey: "chatMessageId" });
 db.FileAttachment.belongsTo(db.ChatMessage, { foreignKey: "chatMessageId" });
+
+// User ↔ Review (1:M)
+db.User.hasMany(db.Review, { foreignKey: "userId" });
+db.Review.belongsTo(db.User, { foreignKey: "userId" });
+
+// Review ↔ ReviewAnswer (1:M)
+db.Review.hasMany(db.ReviewAnswer, { foreignKey: "reviewId" });
+db.ReviewAnswer.belongsTo(db.Review, { foreignKey: "reviewId" });
+
+// ReviewQuestion ↔ ReviewAnswer (1:M)
+db.ReviewQuestion.hasMany(db.ReviewAnswer, { foreignKey: "questionId" });
+db.ReviewAnswer.belongsTo(db.ReviewQuestion, { foreignKey: "questionId" });
 
 
 // Admin <-> Admin (1:M)

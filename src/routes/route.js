@@ -8,6 +8,7 @@ module.exports = (app) => {
   app.use("/profile", require("./profile"));
   app.use("/files", require("./files"));
   app.use("/jobs", require("./jobs"));
+  app.use("/reviews", require("./reviews"));
   app.use("/skill-score", require("./skillScore"));
   app.use("/notifications", require("./notifications"));
   app.use("/admin", require("./admin"));

@@ -4,6 +4,7 @@ const adminController = require("../controllers/adminController");
 const adminMiddleware = require("../middleware/adminAuth");
 const notificationController = require("../controllers/notificationController");
 const promptController = require("../controllers/promptController");
+const reviewController = require("../controllers/reviewController");
 
 // Public routes
 router.post("/login", adminController.login);
@@ -58,5 +59,12 @@ router.post("/prompts", promptController.createPrompt);
 router.put("/prompts/:id", promptController.updatePrompt);
 router.delete("/prompts/:id", promptController.deletePrompt);
 router.put("/prompts/:id/activate", promptController.activatePrompt);
+
+// Reviews (admin)
+router.get("/reviews", reviewController.listReviews);
+router.get("/reviews/stats", reviewController.stats);
+router.get("/review-questions", reviewController.listQuestionsAdmin);
+router.post("/review-questions", reviewController.createQuestion);
+router.put("/review-questions/:id", reviewController.updateQuestion);
 
 module.exports = router;
