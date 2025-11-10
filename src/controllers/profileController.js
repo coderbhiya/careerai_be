@@ -172,6 +172,47 @@ module.exports = {
 
   /**
    * @swagger
+   * /profile/phone:
+   *   post:
+   *     summary: Update user phone number
+   *     tags: [Profile]
+   *     security:
+   *       - bearerAuth: []
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             properties:
+   *               phone:
+   *                 type: string
+   *     responses:
+   *       200:
+   *         description: Phone number updated successfully
+   *       404:
+   *         description: User not found
+   *       500:
+   *         description: Server error
+   */
+
+  updatePhoneNumber: async (req, res) => {
+    try {
+      const userId = req.user.id;
+      const { phone } = req.body;
+
+      // Update user phone number
+      await User.update({ phone }, { where: { id: userId } });
+
+      res.json({ success: true, message: "Phone number updated successfully" });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ success: false, message: "Server error" });
+    }
+  },
+
+  /**
+   * @swagger
    * /profile/skills:
    *   get:
    *     summary: Get user skills

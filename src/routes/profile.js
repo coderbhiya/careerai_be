@@ -10,6 +10,9 @@ router.use(authMiddleware);
 router.get("/", profileController.getProfile);
 router.put("/", profileController.updateProfile);
 
+// Phone routes
+router.post("/phone", profileController.updatePhoneNumber);
+
 // Skills routes
 router.get("/skills", profileController.getSkills);
 router.post("/skills", profileController.addSkill);
