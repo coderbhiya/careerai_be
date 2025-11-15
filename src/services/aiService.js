@@ -96,6 +96,14 @@ const chatWithAI = async (userMessage, files = []) => {
             purpose: "assistants",
           });
           setCache(cacheKey, { fileId: uploaded.id });
+
+          const isPDF = normalizedPath.endsWith(".pdf");
+          const isImage = /\.(jpg|jpeg|png|gif|webp)$/.test(normalizedPath);
+
+          if (isImage) {
+            return { type: "input_image", file_id: uploaded.id };
+          }
+
           return { type: "input_file", file_id: uploaded.id };
         } catch (uploadErr) {
           console.warn(`Failed to attach file: ${f?.path}`, uploadErr?.message);
@@ -137,3 +145,4 @@ const chatWithAI = async (userMessage, files = []) => {
 module.exports = {
   chatWithAI,
 };
+
