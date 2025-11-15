@@ -84,21 +84,25 @@ const chatWithAI = async (userMessage, files = []) => {
             return null;
           }
 
-          const cacheKey = getCacheKey(normalizedPath, stat);
-          const cached = fileUploadCache.get(cacheKey);
-          if (cached?.fileId) {
-            return { type: "input_file", file_id: cached.fileId };
-          }
+          // const cacheKey = getCacheKey(normalizedPath, stat);
+          // const cached = fileUploadCache.get(cacheKey);
+          // if (cached?.fileId) {
+          //   return { type: "input_file", file_id: cached.fileId };
+          // }
 
           // Upload to OpenAI
           const uploaded = await client.files.create({
             file: fs.createReadStream(normalizedPath),
             purpose: "assistants",
           });
-          setCache(cacheKey, { fileId: uploaded.id });
+          // setCache(cacheKey, { fileId: uploaded.id });
 
           const isPDF = normalizedPath.endsWith(".pdf");
-          const isImage = /\.(jpg|jpeg|png|gif|webp)$/.test(normalizedPath);
+          const isImage = normalizedPath.match(/\.(jpg|jpeg|png|gif|webp)$/);
+
+          // console.log("isPDF:", isPDF);
+          // console.log("isImage:", isImage);
+          // console.log("normalizedPath:", normalizedPath);
 
           if (isImage) {
             return { type: "input_image", file_id: uploaded.id };
@@ -120,6 +124,8 @@ const chatWithAI = async (userMessage, files = []) => {
     }
 
     content.push({ type: "input_text", text: userMessage });
+
+    // console.log("Content:", content);
 
     const response = await client.responses.create({
       model: model,
