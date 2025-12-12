@@ -139,22 +139,22 @@ module.exports = {
       }
 
       //   Ckeck Is verified
-    //   if (!user.isVerified) {
-    //     // Send verification email
+      //   if (!user.isVerified) {
+      //     // Send verification email
 
-    //     const OTP = Math.floor(100000 + Math.random() * 900000);
-    //     user.otp = OTP;
-    //     user.otpExpires = Date.now() + 600000; // 10 minutes
-    //     await user.save();
+      //     const OTP = Math.floor(100000 + Math.random() * 900000);
+      //     user.otp = OTP;
+      //     user.otpExpires = Date.now() + 600000; // 10 minutes
+      //     await user.save();
 
-    //     await emailService.sendEmail({
-    //       to: user.email,
-    //       subject: "Verify your email",
-    //       html: `<p>Please use the following OTP to verify your email: ${OTP}</p>`,
-    //     });
+      //     await emailService.sendEmail({
+      //       to: user.email,
+      //       subject: "Verify your email",
+      //       html: `<p>Please use the following OTP to verify your email: ${OTP}</p>`,
+      //     });
 
-    //     return res.status(400).json({ success: false, message: "OTP sent to email" });
-    //   }
+      //     return res.status(400).json({ success: false, message: "OTP sent to email" });
+      //   }
 
       if (!user.isMobileVerified) {
         return res.status(400).json({ success: false, message: "Mobile number not verified. Please verify mobile!!!" });
@@ -264,7 +264,7 @@ module.exports = {
 
       // Find user by Firebase UID
       let user = await User.findOne({ where: { firebaseUid: decoded.uid } });
-      
+
       // If user doesn't exist, create a new user
       if (!user) {
         user = await User.create({
@@ -276,23 +276,23 @@ module.exports = {
           isMobileVerified: true
         });
       }
-      
+
       // Generate JWT token
       const token = jwt.sign(
-        { 
-          id: user.id, 
-          email: user.email, 
-          role: user.role, 
+        {
+          id: user.id,
+          email: user.email,
+          role: user.role,
           isVerified: user.isVerified,
-          firebaseUid: user.firebaseUid 
-        }, 
-        JWT_SECRET, 
+          firebaseUid: user.firebaseUid
+        },
+        JWT_SECRET,
         { expiresIn: "7d" }
       );
-      
-      res.json({ 
-        success: true, 
-        message: "Token verified successfully", 
+
+      res.json({
+        success: true,
+        message: "Token verified successfully",
         token,
         user: {
           id: user.id,
@@ -347,25 +347,25 @@ module.exports = {
   googleAuth: async (req, res) => {
     try {
       const { idToken, userData } = req.body;
-      
+
       // Verify Google ID token with Firebase Admin
       const decoded = await admin.auth().verifyIdToken(idToken);
-      
+
       // Ensure the token is from Google provider
       if (!decoded.firebase.sign_in_provider === 'google.com') {
         return res.status(401).json({ success: false, message: "Invalid Google token" });
       }
-      
+
       // Find user by Firebase UID or email
-       let user = await User.findOne({ 
-         where: { 
-           [Op.or]: [
-             { firebaseUid: decoded.uid },
-             { email: decoded.email }
-           ]
-         } 
-       });
-      
+      let user = await User.findOne({
+        where: {
+          [Op.or]: [
+            { firebaseUid: decoded.uid },
+            { email: decoded.email }
+          ]
+        }
+      });
+
       // If user doesn't exist, create a new user
       if (!user) {
         user = await User.create({
@@ -386,29 +386,30 @@ module.exports = {
           isVerified: true
         });
       }
-      
+
       // Generate JWT token
       const token = jwt.sign(
-        { 
-          id: user.id, 
-          email: user.email, 
-          role: user.role, 
+        {
+          id: user.id,
+          email: user.email,
+          role: user.role,
           isVerified: user.isVerified,
-          firebaseUid: user.firebaseUid 
-        }, 
-        JWT_SECRET, 
+          firebaseUid: user.firebaseUid
+        },
+        JWT_SECRET,
         { expiresIn: "7d" }
       );
-      
-      res.json({ 
-        success: true, 
-        message: "Google authentication successful", 
+
+      res.json({
+        success: true,
+        message: "Google authentication successful",
         token,
         user: {
           id: user.id,
           email: user.email,
           name: user.name,
           profilePicture: user.profilePicture,
+          phone: user.phone,
           role: user.role,
           provider: user.provider
         }
