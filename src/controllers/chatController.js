@@ -118,6 +118,129 @@ module.exports = {
    *         description: Server error
    */
   sendReply: async (req, res) => {
+    try {
+      const { id } = req.user;
+      const userId = id;
+      const { message, fileAttachments } = req.body;
+
+      const threadChat = await db.ChatMessage.findOne({
+        where: {
+          userId: userId,
+        },
+        order: [["id", "ASC"]],
+      });
+
+      let thread_id = threadChat.threadId;
+
+      if (!threadChat) {
+        const thread = await client.beta.threads.create();
+        thread_id = thread.id;
+        await db.ChatMessage.create({
+          userId: userId,
+          threadId: thread.id,
+        });
+      }
+
+      // Create user message
+      const userMessage = await db.ChatMessage.create(
+        {
+          userId: userId,
+          role: "user",
+          message,
+          hasAttachments: fileAttachments && fileAttachments.length > 0,
+        },
+        // { transaction }
+      );
+
+      // Create user message
+      await client.beta.threads.messages.create(thread_id, {
+        role: "user",
+        content: message
+      });
+
+      // Create file attachments if any
+      if (fileAttachments && fileAttachments.length > 0) {
+        const attachmentsData = fileAttachments.map((f) => ({
+          chatMessageId: userMessage.id,
+          fileName: f.fileName,
+          originalName: f.originalName,
+          filePath: f.filePath,
+          fileType: f.fileType,
+          fileSize: f.fileSize,
+          mimeType: f.mimeType,
+        }));
+        const attachments = await db.FileAttachment.bulkCreate(attachmentsData,
+          //  { transaction }
+        );
+
+        const files = await Promise.all(fileAttachments.map(async (f) => {
+          const file = await client.files.create({
+            file: fs.createReadStream(path.join(process.cwd(), f.filePath)),
+            purpose: "assistants",
+          });
+          return file;
+        }));
+
+        await Promise.all(files.map(async (file) => {
+          await client.beta.threads.messages.create(thread_id, {
+            role: "user",
+            content: message,
+            attachments: [{
+              file_id: file.id,
+              tools: [{
+                type: "file_search"
+              }]
+            }],
+          });
+        }));
+      }
+
+      // Get Prompt
+      const dbPrompt = await db.Prompt.findOne({
+        where: {
+          isActive: true,
+        },
+      });
+
+      if (!dbPrompt) {
+        return res.status(400).json({ success: false, message: "Prompt not found" });
+      }
+
+      // Run assistant on thread
+      const run = await client.beta.threads.runs.create(thread_id, {
+        assistant_id: dbPrompt.assistantId,
+      });
+
+      let status;
+      do {
+        const runStatus = await client.beta.threads.runs.retrieve(run.id, {
+          thread_id: thread_id,
+        });
+        status = runStatus.status;
+      } while (status !== "completed");
+
+      const messages = await client.beta.threads.messages.list(thread_id);
+
+      const lastMessage = messages.data[0].content[0].text.value;
+
+      // Create assistant message in database
+      await db.ChatMessage.create({
+        userId: userId,
+        role: "assistant",
+        message: lastMessage,
+        threadId: thread_id,
+      });
+
+      res.json({ success: true, reply: lastMessage });
+
+
+
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, message: "Server error" });
+    }
+  },
+  sendReplyOld: async (req, res) => {
     // const transaction = await db.sequelize.transaction();
     try {
       const { id } = req.user;
