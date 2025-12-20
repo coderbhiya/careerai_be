@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    threadId: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     hasAttachments: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,

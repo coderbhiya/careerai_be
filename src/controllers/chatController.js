@@ -2,6 +2,11 @@ const path = require("path");
 const db = require("../models");
 const aiService = require("../services/aiService");
 const fs = require("fs");
+const OpenAi = require("openai");
+const client = new OpenAi({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+const OPENAI_MODEL = process.env.OPENAI_MODEL;
 
 function sanitize(input) {
   if (!input) return "";
@@ -56,10 +61,14 @@ module.exports = {
 
       if (chats.length === 0) {
         const firstMessage = "Hey, what's up?";
+
+        const emptyThread = await client.beta.threads.create();
+
         const result = await db.ChatMessage.create({
           userId: id,
           role: "assistant",
           message: firstMessage,
+          threadId: emptyThread.id,
         });
         return res.json({ success: true, chats: [result] });
       }
@@ -150,7 +159,7 @@ module.exports = {
         }));
         await db.FileAttachment.bulkCreate(attachmentsData,
           //  { transaction }
-          );
+        );
       }
 
       // Fetch recent chat history (increased limit for better context)
