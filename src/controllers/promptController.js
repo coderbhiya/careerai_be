@@ -1,5 +1,11 @@
 const db = require("../models");
 
+const OpenAi = require("openai");
+const OPENAI_MODEL = process.env.OPENAI_MODEL;
+const client = new OpenAi({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
 /**
  * @swagger
  * tags:
@@ -212,12 +218,20 @@ module.exports = {
       if (!title || !content) {
         return res.status(400).json({ success: false, message: "Title and content are required" });
       }
+
+      const assistants = await client.beta.assistants.create({
+        name: title,
+        instructions: content,
+        model: OPENAI_MODEL,
+      });
+
+
       const createdBy = req.admin?.id || null;
       // If making active, deactivate others of same type
       if (isActive) {
         await db.Prompt.update({ isActive: false }, { where: { type } });
       }
-      const prompt = await db.Prompt.create({ title, content, type, isActive, createdBy });
+      const prompt = await db.Prompt.create({ title, content, type, isActive, createdBy, assistantId: assistants.id });
       res.status(201).json({ success: true, prompt });
     } catch (err) {
       console.error(err);
@@ -280,13 +294,19 @@ module.exports = {
       const { title, content, type, isActive } = req.body;
       const updatedBy = req.admin?.id || null;
 
+      const assistants = await client.beta.assistants.update(prompt.assistantId, {
+        name: title,
+        instructions: content,
+        model: OPENAI_MODEL,
+      });
+
       // If type is changed and isActive true, deactivate others of new type
       if (typeof isActive === "boolean" && isActive === true) {
         const targetType = type || prompt.type;
         await db.Prompt.update({ isActive: false }, { where: { type: targetType } });
       }
 
-      await prompt.update({ title, content, type, isActive, updatedBy });
+      await prompt.update({ title, content, type, isActive, updatedBy, assistantId: assistants.id });
       res.json({ success: true, prompt });
     } catch (err) {
       console.error(err);

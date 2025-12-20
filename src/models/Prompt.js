@@ -23,6 +23,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
+      assistantId: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
       createdBy: {
         type: DataTypes.INTEGER,
         allowNull: true,
