@@ -26,7 +26,7 @@ module.exports = {
   getProfile: async (req, res) => {
     try {
       const userId = req.user.id;
-      
+
       // Get user with profile
       const user = await User.findByPk(userId, {
         include: [UserProfile],
@@ -49,8 +49,8 @@ module.exports = {
         order: [["startDate", "DESC"]]
       });
 
-      res.json({ 
-        success: true, 
+      res.json({
+        success: true,
         user,
         skills: userSkills.map(us => ({
           id: us.id,
@@ -111,17 +111,17 @@ module.exports = {
   updateProfile: async (req, res) => {
     try {
       const userId = req.user.id;
-      const { 
+      const {
         name,
         email,
-        headline, 
-        bio, 
-        experienceYears, 
-        currentRole, 
-        targetRole, 
-        targetIndustry, 
-        location, 
-        resumeUrl 
+        headline,
+        bio,
+        experienceYears,
+        currentRole,
+        targetRole,
+        targetIndustry,
+        location,
+        resumeUrl
       } = req.body;
 
       // Update user name if provided
@@ -201,6 +201,12 @@ module.exports = {
       const userId = req.user.id;
       const { phone } = req.body;
 
+      const checkPhone = await User.findOne({ where: { phone } });
+
+      if (checkPhone) {
+        return res.status(400).json({ success: false, message: "Phone number already exists" });
+      }
+
       // Update user phone number
       await User.update({ phone }, { where: { id: userId } });
 
@@ -228,7 +234,7 @@ module.exports = {
   getSkills: async (req, res) => {
     try {
       const userId = req.user.id;
-      
+
       const userSkills = await UserSkill.findAll({
         where: { userId },
         include: [Skill]
@@ -295,9 +301,9 @@ module.exports = {
       });
 
       if (existingUserSkill) {
-        return res.status(400).json({ 
-          success: false, 
-          message: "You already have this skill. Use PUT to update it." 
+        return res.status(400).json({
+          success: false,
+          message: "You already have this skill. Use PUT to update it."
         });
       }
 
@@ -308,8 +314,8 @@ module.exports = {
         proficiency: proficiency || "beginner"
       });
 
-      res.status(201).json({ 
-        success: true, 
+      res.status(201).json({
+        success: true,
         message: "Skill added successfully",
         skill: {
           id: userSkill.id,
@@ -364,7 +370,7 @@ module.exports = {
       const { proficiency } = req.body;
 
       const userSkill = await UserSkill.findOne({
-        where: { skillId : id, userId },
+        where: { skillId: id, userId },
         include: [Skill]
       });
 
@@ -374,8 +380,8 @@ module.exports = {
 
       await userSkill.update({ proficiency });
 
-      res.json({ 
-        success: true, 
+      res.json({
+        success: true,
         message: "Skill updated successfully",
         skill: {
           id: userSkill.id,
@@ -452,7 +458,7 @@ module.exports = {
   getExperiences: async (req, res) => {
     try {
       const userId = req.user.id;
-      
+
       const experiences = await Experience.findAll({
         where: { userId },
         order: [["startDate", "DESC"]]
@@ -515,8 +521,8 @@ module.exports = {
         achievements
       });
 
-      res.status(201).json({ 
-        success: true, 
+      res.status(201).json({
+        success: true,
         message: "Experience added successfully",
         experience
       });
@@ -592,8 +598,8 @@ module.exports = {
         achievements: achievements !== undefined ? achievements : experience.achievements
       });
 
-      res.json({ 
-        success: true, 
+      res.json({
+        success: true,
         message: "Experience updated successfully",
         experience
       });
