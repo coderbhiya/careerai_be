@@ -1082,7 +1082,7 @@ module.exports = {
        // Mock system settings - in a real app, these would come from a settings table
        const settings = {
          general: {
-           siteName: "CareerAI",
+           siteName: "AarikaAI",
            siteDescription: "AI-powered career guidance platform",
            maintenanceMode: false,
            registrationEnabled: true
