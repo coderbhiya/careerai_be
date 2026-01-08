@@ -258,7 +258,7 @@ module.exports = {
 
   verifyToken: async (req, res, next) => {
     try {
-      const { idToken } = req.body;
+      const { idToken, userData } = req.body;
       const decoded = await admin.auth().verifyIdToken(idToken);
       console.log("User ID:", decoded.uid);
 
@@ -266,14 +266,17 @@ module.exports = {
       let user = await User.findOne({ where: { firebaseUid: decoded.uid } });
 
       // If user doesn't exist, create a new user
+      // We prioritize userData passed from client, then token data
       if (!user) {
         user = await User.create({
           firebaseUid: decoded.uid,
-          email: decoded.email || null,
-          phone: decoded.phone_number || null,
-          name: decoded.name || 'User',
+          email: decoded.email || (userData && userData.email) || null,
+          phone: decoded.phone_number || (userData && userData.phone) || null,
+          name: (userData && userData.name) || (userData && userData.displayName) || decoded.name || 'User',
+          profilePicture: (userData && userData.photoURL) || decoded.picture || null,
           isVerified: true,
-          isMobileVerified: true
+          isMobileVerified: true, // Assuming firebase handles this or we treat satisfied
+          provider: 'firebase_email'
         });
       }
 
@@ -299,7 +302,8 @@ module.exports = {
           email: user.email,
           name: user.name,
           phone: user.phone,
-          role: user.role
+          role: user.role,
+          profilePicture: user.profilePicture
         }
       });
     } catch (err) {
