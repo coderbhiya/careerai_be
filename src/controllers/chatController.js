@@ -117,7 +117,7 @@ module.exports = {
    *       500:
    *         description: Server error
    */
-  sendReply: async (req, res) => {
+  sendReplyDeprecated: async (req, res) => {
     try {
       const { id } = req.user;
       const userId = id;
@@ -240,7 +240,7 @@ module.exports = {
       res.status(500).json({ success: false, message: "Server error" });
     }
   },
-  sendReplyOld: async (req, res) => {
+  sendReply: async (req, res) => {
     // const transaction = await db.sequelize.transaction();
     try {
       const { id } = req.user;
