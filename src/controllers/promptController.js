@@ -27,6 +27,8 @@ const client = new OpenAi({
  *           enum: [chat, skill, system, other]
  *         isActive:
  *           type: boolean
+ *         classification:
+ *           type: string
  *         createdBy:
  *           type: integer
  *           nullable: true
@@ -54,6 +56,8 @@ const client = new OpenAi({
  *         isActive:
  *           type: boolean
  *           default: false
+ *         classification:
+ *           type: string
  *     PromptUpdate:
  *       type: object
  *       properties:
@@ -95,6 +99,11 @@ module.exports = {
      *           type: string
      *           enum: [chat, skill, system, other]
      *         description: Filter by prompt type
+     *       - in: query
+     *         name: classification
+     *         schema:
+     *           type: string
+     *         description: Filter by classification
      *     responses:
      *       200:
      *         description: Prompts retrieved successfully
@@ -113,9 +122,10 @@ module.exports = {
      *         description: Server error
      */
     try {
-      const { type } = req.query;
+      const { type, classification } = req.query;
       const where = {};
       if (type) where.type = type;
+      if (classification) where.classification = classification;
       const prompts = await db.Prompt.findAll({ where, order: [["updatedAt", "DESC"]] });
       res.json({ success: true, prompts });
     } catch (err) {
@@ -214,7 +224,7 @@ module.exports = {
      *         description: Server error
      */
     try {
-      const { title, content, type = "chat", isActive = false } = req.body;
+      const { title, content, type = "chat", isActive = false, classification } = req.body;
       if (!title || !content) {
         return res.status(400).json({ success: false, message: "Title and content are required" });
       }
@@ -227,11 +237,11 @@ module.exports = {
 
 
       const createdBy = req.admin?.id || null;
-      // If making active, deactivate others of same type
+      // If making active, deactivate others of same classification
       if (isActive) {
-        await db.Prompt.update({ isActive: false }, { where: { type } });
+        await db.Prompt.update({ isActive: false }, { where: { classification } });
       }
-      const prompt = await db.Prompt.create({ title, content, type, isActive, createdBy, assistantId: assistants.id });
+      const prompt = await db.Prompt.create({ title, content, type, isActive, createdBy, assistantId: assistants.id, classification });
       res.status(201).json({ success: true, prompt });
     } catch (err) {
       console.error(err);
@@ -291,22 +301,24 @@ module.exports = {
       const prompt = await db.Prompt.findByPk(id);
       if (!prompt) return res.status(404).json({ success: false, message: "Prompt not found" });
 
-      const { title, content, type, isActive } = req.body;
+
+      const { title, content, type, isActive, classification } = req.body;
       const updatedBy = req.admin?.id || null;
 
-      const assistants = await client.beta.assistants.update(prompt.assistantId, {
-        name: title,
-        instructions: content,
-        model: OPENAI_MODEL,
-      });
+      const assistants = null
+      // = await client.beta.assistants.update(prompt.assistantId, {
+      //   name: title,
+      //   instructions: content,
+      //   model: OPENAI_MODEL,
+      // });
 
-      // If type is changed and isActive true, deactivate others of new type
+      // If isActive true, deactivate others of same classification
       if (typeof isActive === "boolean" && isActive === true) {
-        const targetType = type || prompt.type;
-        await db.Prompt.update({ isActive: false }, { where: { type: targetType } });
+        const targetClassification = classification !== undefined ? classification : prompt.classification;
+        await db.Prompt.update({ isActive: false }, { where: { classification: targetClassification } });
       }
-
-      await prompt.update({ title, content, type, isActive, updatedBy, assistantId: assistants.id });
+      
+      await prompt.update({ title, content, type, isActive, updatedBy, assistantId: assistants?.id || null, classification });
       res.json({ success: true, prompt });
     } catch (err) {
       console.error(err);
@@ -400,8 +412,8 @@ module.exports = {
       const prompt = await db.Prompt.findByPk(id);
       if (!prompt) return res.status(404).json({ success: false, message: "Prompt not found" });
 
-      // Deactivate other prompts of same type
-      await db.Prompt.update({ isActive: false }, { where: { type: prompt.type } });
+      // Deactivate other prompts of same classification
+      await db.Prompt.update({ isActive: false }, { where: { classification: prompt.classification } });
       await prompt.update({ isActive: true, updatedBy: req.admin?.id || null });
 
       res.json({ success: true, prompt });
@@ -433,6 +445,11 @@ module.exports = {
      *           type: string
      *           enum: [chat, skill, system, other]
      *         description: Prompt type (defaults to chat)
+     *       - in: query
+     *         name: classification
+     *         schema:
+     *           type: string
+     *         description: Filter by classification (optional)
      *     responses:
      *       200:
      *         description: Active prompt retrieved successfully (may be null)
@@ -443,17 +460,19 @@ module.exports = {
      *               properties:
      *                 success:
      *                   type: boolean
-     *                 prompt:
-     *                   nullable: true
-     *                   allOf:
-     *                     - $ref: '#/components/schemas/Prompt'
+     *                 prompts:
+     *                   type: array
+     *                   items:
+     *                     $ref: '#/components/schemas/Prompt'
      *       500:
      *         description: Server error
      */
     try {
-      const { type = "chat" } = req.query;
-      const prompt = await db.Prompt.findOne({ where: { type, isActive: true }, order: [["updatedAt", "DESC"]] });
-      res.json({ success: true, prompt });
+      const { type = "chat", classification } = req.query;
+      const where = { type, isActive: true };
+      if (classification) where.classification = classification;
+      const activePrompts = await db.Prompt.findAll({ where, order: [["updatedAt", "DESC"]] });
+      res.json({ success: true, prompts: activePrompts });
     } catch (err) {
       console.error(err);
       res.status(500).json({ success: false, message: "Server error" });

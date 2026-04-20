@@ -8,6 +8,8 @@ const client = new OpenAi({
 });
 const OPENAI_MODEL = process.env.OPENAI_MODEL;
 
+const chatLibrary = require("../libraries/chat/chatLibrary");
+
 function sanitize(input) {
   if (!input) return "";
   return String(input)
@@ -247,16 +249,14 @@ module.exports = {
       const userId = id;
       const { message, fileAttachments } = req.body;
 
-      // Get Prompt
-      const dbPrompt = await db.Prompt.findOne({
-        where: {
-          isActive: true,
-        },
-      });
+      const classification = await chatLibrary.classification(message);
 
-      if (!dbPrompt) {
-        return res.status(400).json({ success: false, message: "Prompt not found" });
-      }
+      console.log("----------classification----------")
+      console.log(classification);
+      console.log('----------------------------------')
+
+      // Get Prompt
+      const dbPrompt = await chatLibrary.getPromtFromClassification(classification);
 
       // Create user message
       const userMessage = await db.ChatMessage.create(
