@@ -36,6 +36,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(100),
       allowNull: false,
     },
+    summary: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
   });
 
   return FileAttachment;

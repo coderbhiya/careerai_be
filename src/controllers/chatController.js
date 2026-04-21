@@ -270,19 +270,22 @@ module.exports = {
       );
 
       // Create file attachments if any
+      let savedAttachments = [];
       if (fileAttachments && fileAttachments.length > 0) {
-        const attachmentsData = fileAttachments.map((f) => ({
-          chatMessageId: userMessage.id,
-          fileName: f.fileName,
-          originalName: f.originalName,
-          filePath: f.filePath,
-          fileType: f.fileType,
-          fileSize: f.fileSize,
-          mimeType: f.mimeType,
+        const attachmentsData = await Promise.all(fileAttachments.map(async (f) => {
+          const summary = await aiService.summarizeFile(f.filePath, f.originalName);
+          return {
+            chatMessageId: userMessage.id,
+            fileName: f.fileName,
+            originalName: f.originalName,
+            filePath: f.filePath,
+            fileType: f.fileType,
+            fileSize: f.fileSize,
+            mimeType: f.mimeType,
+            summary: summary,
+          };
         }));
-        await db.FileAttachment.bulkCreate(attachmentsData,
-          //  { transaction }
-        );
+        savedAttachments = await db.FileAttachment.bulkCreate(attachmentsData);
       }
 
       // Fetch recent chat history (increased limit for better context)
@@ -322,10 +325,13 @@ module.exports = {
       let fileContext = "";
 
       // Add current message files if any
-      if (fileAttachments && fileAttachments.length > 0) {
+      if (savedAttachments && savedAttachments.length > 0) {
         fileContext += `\n\n4. The user has uploaded the following files with their current message:\n`;
-        fileAttachments.forEach((file, index) => {
-          fileContext += `   - File ${index + 1}: ${file.originalName} (${file.fileType}, ${(file.fileSize / 1024).toFixed(2)} KB)\n`;
+        savedAttachments.forEach((file, index) => {
+          fileContext += `   - File ${index + 1}: ${file.originalName} (${file.fileType})\n`;
+          if (file.summary) {
+            fileContext += `     Summary: ${file.summary}\n`;
+          }
         });
       }
 
@@ -334,11 +340,14 @@ module.exports = {
         const previousFiles = allUserFiles.filter((file) => !fileAttachments?.some((currentFile) => currentFile.fileName === file.fileName));
 
         if (previousFiles.length > 0) {
-          fileContext += `\n\n5. Previously uploaded files in this conversation that you can reference:\n`;
+          fileContext += `\n\n5. Previously uploaded files in this conversation:\n`;
           previousFiles.forEach((file, index) => {
-            fileContext += `   - ${file.originalName} (${file.fileType}, uploaded earlier)\n`;
+            fileContext += `   - ${file.originalName} (${file.fileType})\n`;
+            if (file.summary) {
+              fileContext += `     Summary: ${file.summary}\n`;
+            }
           });
-          fileContext += `\nNote: The user may ask questions about any of these previously uploaded files. Please reference them when relevant.\n`;
+          fileContext += `\nNote: Please refer to these summaries when the user asks questions about these files.\n`;
         }
       }
 

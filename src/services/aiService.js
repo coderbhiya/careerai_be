@@ -148,7 +148,40 @@ const chatWithAI = async (userMessage, files = []) => {
   }
 };
 
+const summarizeFile = async (filePath, originalName) => {
+  try {
+    const normalizedPath = path.resolve(BACKEND_ROOT, filePath.replace(/^\//, ""));
+
+    const uploaded = await client.files.create({
+      file: fs.createReadStream(normalizedPath),
+      purpose: "assistants",
+    });
+
+    const prompt = `Please provide a concise summary and extract key information from the following file: ${originalName}. If it's a resume, extract contact info, skills, and experience. If it's a job description, extract requirements and responsibilities. Formulate the output in a well-structured markdown format.`;
+
+    const response = await client.responses.create({
+      model: OPENAI_MODEL,
+      max_output_tokens: 1000,
+      input: [
+        {
+          role: "user",
+          content: [
+            { type: "input_file", file_id: uploaded.id },
+            { type: "input_text", text: prompt },
+          ],
+        },
+      ],
+    });
+
+    return response.output_text;
+  } catch (err) {
+    console.error("summarizeFile error:", err?.message || err);
+    return null;
+  }
+};
+
 module.exports = {
   chatWithAI,
+  summarizeFile,
 };
 
