@@ -64,14 +64,14 @@ module.exports = {
       if (chats.length === 0) {
         const firstMessage = "Hey, what's up?";
 
-        const emptyThread = await client.beta.threads.create();
+        // const emptyThread = await client.beta.threads.create();
 
-        const result = await db.ChatMessage.create({
-          userId: id,
-          role: "assistant",
-          message: firstMessage,
-          threadId: emptyThread.id,
-        });
+        // const result = await db.ChatMessage.create({
+        //   userId: id,
+        //   role: "assistant",
+        //   message: firstMessage,
+        //   threadId: emptyThread.id,
+        // });
         return res.json({ success: true, chats: [result] });
       }
 
