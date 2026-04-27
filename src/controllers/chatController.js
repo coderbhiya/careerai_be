@@ -72,7 +72,7 @@ module.exports = {
         //   message: firstMessage,
         //   threadId: emptyThread.id,
         // });
-        return res.json({ success: true, chats: [result] });
+        // return res.json({ success: true, chats: [result] });
       }
 
       res.json({ success: true, chats });
