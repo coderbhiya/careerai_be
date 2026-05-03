@@ -180,8 +180,47 @@ const summarizeFile = async (filePath, originalName) => {
   }
 };
 
+/**
+ * Summarizes a chunk of raw chat history into a concise paragraph
+ * that can later be injected as rolling context into the AI prompt.
+ *
+ * @param {string} formattedHistory  Output of formatChatHistory()
+ * @returns {Promise<string>}         The AI-generated summary text
+ */
+const summarizeChatHistory = async (formattedHistory) => {
+  try {
+    const prompt = `You are a helpful assistant. The following is a conversation history between a user and a career AI assistant.
+Please summarize this conversation into a concise, structured paragraph (max 300 words). 
+Capture: the user's career goals, skills mentioned, topics discussed, any documents uploaded, and any advice given.
+This summary will be used as context for future messages so preserve all important details.
+
+--- CONVERSATION START ---
+${formattedHistory}
+--- CONVERSATION END ---
+
+Summary:`;
+
+    const response = await client.responses.create({
+      model: OPENAI_MODEL,
+      max_output_tokens: 500,
+      input: [
+        {
+          role: "user",
+          content: [{ type: "input_text", text: prompt }],
+        },
+      ],
+    });
+
+    return response.output_text;
+  } catch (err) {
+    console.error("summarizeChatHistory error:", err?.message || err);
+    return null;
+  }
+};
+
 module.exports = {
   chatWithAI,
   summarizeFile,
+  summarizeChatHistory,
 };
 

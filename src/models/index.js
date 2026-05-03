@@ -31,6 +31,7 @@ db.ApplicationFeedback = require("./ApplicationFeedback")(sequelize, DataTypes);
 db.Certification = require("./Certification")(sequelize, DataTypes);
 db.Notification = require("./Notification")(sequelize, DataTypes);
 db.Prompt = require("./Prompt")(sequelize, DataTypes);
+db.ChatSummary = require("./ChatSummary")(sequelize, DataTypes);
 db.Review = require("./Review")(sequelize, DataTypes);
 db.ReviewQuestion = require("./ReviewQuestion")(sequelize, DataTypes);
 db.ReviewAnswer = require("./ReviewAnswer")(sequelize, DataTypes);
@@ -85,6 +86,10 @@ db.Notification.belongsTo(db.User, { foreignKey: "userId" });
 // User ↔ ChatMessage (1:M)
 db.User.hasMany(db.ChatMessage, { foreignKey: "userId" });
 db.ChatMessage.belongsTo(db.User, { foreignKey: "userId" });
+
+// User ↔ ChatSummary (1:1)
+db.User.hasOne(db.ChatSummary, { foreignKey: "userId" });
+db.ChatSummary.belongsTo(db.User, { foreignKey: "userId" });
 
 // ChatMessage ↔ FileAttachment (1:M)
 db.ChatMessage.hasMany(db.FileAttachment, { foreignKey: "chatMessageId" });
