@@ -229,11 +229,11 @@ module.exports = {
         return res.status(400).json({ success: false, message: "Title and content are required" });
       }
 
-      const assistants = await client.beta.assistants.create({
-        name: title,
-        instructions: content,
-        model: OPENAI_MODEL,
-      });
+      // const assistants = await client.beta.assistants.create({
+      //   name: title,
+      //   instructions: content,
+      //   model: OPENAI_MODEL,
+      // });
 
 
       const createdBy = req.admin?.id || null;
@@ -241,7 +241,7 @@ module.exports = {
       if (isActive) {
         await db.Prompt.update({ isActive: false }, { where: { classification } });
       }
-      const prompt = await db.Prompt.create({ title, content, type, isActive, createdBy, assistantId: assistants.id, classification });
+      const prompt = await db.Prompt.create({ title, content, type, isActive, createdBy, assistantId: null, classification });
       res.status(201).json({ success: true, prompt });
     } catch (err) {
       console.error(err);
@@ -317,7 +317,7 @@ module.exports = {
         const targetClassification = classification !== undefined ? classification : prompt.classification;
         await db.Prompt.update({ isActive: false }, { where: { classification: targetClassification } });
       }
-      
+
       await prompt.update({ title, content, type, isActive, updatedBy, assistantId: assistants?.id || null, classification });
       res.json({ success: true, prompt });
     } catch (err) {
