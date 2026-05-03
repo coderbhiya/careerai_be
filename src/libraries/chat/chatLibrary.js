@@ -6,11 +6,18 @@ class ChatLibrary {
         const classification = await client.chat.completions.create({
             model: OPENAI_MODEL,
             messages: [
-                { role: "system", content: "Classify user intent as 'STUDENT','DEVELOPER', 'ENGINEER', 'PARENT', 'TEACHER', 'COUNSELLOR', 'UNIVERSITY', 'JOB', 'ADMIN'. Reply with only one word." },
+                {
+                    role: "system",
+                    content: "Classify user intent into one or more of the following categories: 'STUDENT', 'DEVELOPER', 'ENGINEER', 'PARENT', 'TEACHER', 'COUNSELLOR', 'UNIVERSITY', 'JOB', 'ADMIN'. If multiple categories apply, return them as a comma-separated list. Reply only with the categories."
+                },
                 { role: "user", content: userMessage },
             ],
         });
-        return classification.choices[0].message.content.trim();
+
+        const resultsRaw = classification.choices[0].message.content.trim();
+        const intentsArray = resultsRaw.split(',').map(item => item.trim());
+
+        return intentsArray;
     }
 
     async getPromtFromClassification(classification = '') {
@@ -31,10 +38,6 @@ class ChatLibrary {
                 },
                 order: [["updatedAt", "DESC"]],
             });
-
-            if (!dbPrompt) {
-                throw new Error("Prompt not found");
-            }
         }
 
         return dbPrompt;
