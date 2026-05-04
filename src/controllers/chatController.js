@@ -9,6 +9,7 @@ const client = new OpenAi({
 const OPENAI_MODEL = process.env.OPENAI_MODEL;
 
 const chatLibrary = require("../libraries/chat/chatLibrary");
+const { toolDefinitions, executeTool } = require("../libraries/chat/aiTools");
 
 function sanitize(input) {
   if (!input) return "";
@@ -249,13 +250,14 @@ module.exports = {
       const userId = id;
       const { message, fileAttachments } = req.body;
 
-      const classification = await chatLibrary.classification(message);
+      // const classification = await chatLibrary.classification(message);
 
-      console.log("----------classification----------")
-      console.log(classification);
-      console.log('----------------------------------')
+      // console.log("----------classification----------")
+      // console.log(classification);
+      // console.log('----------------------------------')
 
       // Get Prompt
+      let classification = 'DEFAULT';
       const dbPrompt = await chatLibrary.getPromtFromClassification(classification);
 
       // Create user message
@@ -361,6 +363,16 @@ module.exports = {
       const prompt = `
 ${dbPrompt.content}
 
+---
+**TOOLS AVAILABLE:**
+You have access to the following tools. Use them proactively when relevant:
+- **save_user_profile**: Call this whenever the user mentions their current job, target role, industry, location, years of experience, or bio. Save ONLY what they explicitly mention.
+- **save_user_skills**: Call this whenever the user mentions technologies, programming languages, tools, frameworks, or any skills they have. Extract ALL skills mentioned.
+- **save_user_interests**: Call this whenever the user mentions career interests, field of study, degree, or educational background.
+- **recommend_jobs**: Call this whenever the user asks for job recommendations, job listings, or wants to know what jobs suit them. Build keywords from their skills and target role.
+
+You can call multiple tools in parallel if needed. After using tools, always respond naturally to the user.
+---
 
 ${chatSummary ? `**Previous Conversation Summary (older messages compressed by system):**
 -- SUMMARY START --
@@ -368,26 +380,31 @@ ${sanitize(chatSummary.summary)}
 -- SUMMARY END --
 
 ` : ""}
- **Recent Chat History:**
--- PREVIOUS CHAT HISTORY START --
-${sanitize(formatChatHistory(chatHistory))}
--- PREVIOUS CHAT HISTORY END --
-
- **Latest user message:**
-${sanitize(message)}
-
  **File context (if any):**
 ${sanitize(fileContext)}
-
----
 `;
 
-      const files = allUserFiles.map((file) => ({
-        name: file.fileName,
-        path: file.filePath.replace(`${process.env.APP_URL}/`, ""),
+      // Build OpenAI messages array from recent chat history
+      // (AI tools API uses chat.completions format, not responses format)
+      const openaiMessages = chatHistory.map((chat) => ({
+        role: chat.role,
+        content: chat.message,
       }));
 
-      const reply = await aiService.chatWithAI(prompt, files);
+      // Add the current user message
+      openaiMessages.push({ role: "user", content: sanitize(message) });
+
+      // Call AI with function-calling support
+      const { reply, toolsUsed } = await aiService.chatWithAITools(
+        userId,
+        prompt,          // system prompt (full context already baked in)
+        openaiMessages,
+        toolDefinitions,
+        executeTool,
+      );
+
+      console.log(`[chatController] toolsUsed: [${toolsUsed.join(", ")}]`);
+
       await db.ChatMessage.create(
         {
           userId: userId,
@@ -397,7 +414,7 @@ ${sanitize(fileContext)}
         // { transaction }
       );
       // await transaction.commit();
-      res.json({ success: true, reply });
+      res.json({ success: true, reply, toolsUsed });
     } catch (err) {
       console.error(err);
       // transaction.rollback();

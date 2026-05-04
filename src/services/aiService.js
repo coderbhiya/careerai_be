@@ -218,9 +218,95 @@ Summary:`;
   }
 };
 
+/**
+ * Chat with AI using OpenAI Function Calling (Tools).
+ * The AI may call zero or more tools before producing its final text reply.
+ *
+ * @param {number}   userId         - The authenticated user's ID (needed for tool executors)
+ * @param {string}   systemPrompt   - Full system prompt (already built by chatController)
+ * @param {Array}    messages       - OpenAI messages array [{role, content}, ...]
+ * @param {Array}    toolDefs       - Tool definitions array from aiTools.js
+ * @param {Function} toolExecutor   - Async fn(userId, toolName, args) => result object
+ * @returns {Promise<{reply: string, toolsUsed: string[]}>}
+ */
+const chatWithAITools = async (userId, systemPrompt, messages, toolDefs, toolExecutor) => {
+  const model = OPENAI_MODEL;
+  if (!model) throw new Error("OPENAI_MODEL is not configured");
+
+  const toolsUsed = [];
+
+  // Build initial messages array
+  const openaiMessages = [
+    { role: "system", content: systemPrompt },
+    ...messages,
+  ];
+
+  // Agentic loop: keep going until AI stops calling tools
+  let iterations = 0;
+  const MAX_ITERATIONS = 5; // safety limit
+
+  while (iterations < MAX_ITERATIONS) {
+    iterations++;
+
+    const response = await client.chat.completions.create({
+      model,
+      messages: openaiMessages,
+      tools: toolDefs,
+      tool_choice: "auto",
+      max_tokens: Number(process.env.OPENAI_MAX_OUTPUT_TOKENS ?? 1000),
+    });
+
+    const assistantMessage = response.choices[0].message;
+
+    // Push assistant's message (may contain tool_calls) into conversation
+    openaiMessages.push(assistantMessage);
+
+    // If AI wants to call tools
+    if (assistantMessage.tool_calls && assistantMessage.tool_calls.length > 0) {
+      console.log(`[chatWithAITools] AI calling ${assistantMessage.tool_calls.length} tool(s) on iteration ${iterations}`);
+
+      // Execute each tool call and push results back
+      for (const toolCall of assistantMessage.tool_calls) {
+        const toolName = toolCall.function.name;
+        let args = {};
+
+        try {
+          args = JSON.parse(toolCall.function.arguments);
+        } catch (e) {
+          console.warn(`[chatWithAITools] Failed to parse args for tool "${toolName}":`, e?.message);
+        }
+
+        console.log(`[chatWithAITools] Executing tool: ${toolName}`, args);
+
+        const result = await toolExecutor(userId, toolName, args);
+        toolsUsed.push(toolName);
+
+        console.log(`[chatWithAITools] Tool "${toolName}" result:`, result);
+
+        // Push tool result back into messages
+        openaiMessages.push({
+          role: "tool",
+          tool_call_id: toolCall.id,
+          content: JSON.stringify(result),
+        });
+      }
+
+      // Continue loop so AI can process tool results and decide next step
+      continue;
+    }
+
+    // No tool calls — AI is done, return the final text reply
+    const reply = assistantMessage.content || "";
+    return { reply, toolsUsed };
+  }
+
+  throw new Error("chatWithAITools exceeded maximum iteration limit");
+};
+
 module.exports = {
   chatWithAI,
   summarizeFile,
   summarizeChatHistory,
+  chatWithAITools,
 };
 

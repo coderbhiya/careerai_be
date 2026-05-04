@@ -40,6 +40,8 @@ class ChatLibrary {
             });
         }
 
+        console.table(dbPrompt.content);
+
         return dbPrompt?.content || '';
     }
 }
